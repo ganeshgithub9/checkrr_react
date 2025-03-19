@@ -10,7 +10,7 @@
     "lint": "eslint --config eslint.config.js",
     "print_eslint_config": "eslint --print-config eslint.config.js",
     "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test:cov": "jest --coverage"
   },
   "keywords": [],
   "author": "",
