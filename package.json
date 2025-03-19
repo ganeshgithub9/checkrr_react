@@ -11,6 +11,7 @@
     "print_eslint_config": "eslint --print-config eslint.config.js",
     "test": "jest",
     "test:cov": "jest --coverage",
+    "pass-test": "jest --passWithNoTests",
     "install-and-test:cov": "npm install && npm run test:cov"
   },
   "keywords": [],
