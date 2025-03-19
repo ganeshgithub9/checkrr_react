@@ -10,7 +10,8 @@
     "lint": "eslint --config eslint.config.js",
     "print_eslint_config": "eslint --print-config eslint.config.js",
     "test": "jest",
-    "test:cov": "jest --coverage"
+    "test:cov": "jest --coverage",
+    "install-and-test:cov": "npm install && npm run test:cov"
   },
   "keywords": [],
   "author": "",

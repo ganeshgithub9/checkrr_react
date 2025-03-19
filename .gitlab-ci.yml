@@ -9,16 +9,15 @@ stages:
 cache:
   paths:
     - node_modules/
-install_dependencies:
+
+# install_dependencies:
+#   stage: test
+#   script:
+#     - npm ci
+install_dependencies_and_run_tests:
   stage: test
   script:
-    - npm ci
-run_tests:
-  stage: test
-  dependencies:
-    - install_dependencies
-  script:
-    - npm run test:cov
+    - npm run install-and-test:cov
   artifacts:
     paths:
       - coverage/
