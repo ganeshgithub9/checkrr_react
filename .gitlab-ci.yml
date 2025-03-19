@@ -26,7 +26,7 @@ sonarqube-check:
   image: sonarsource/sonar-scanner-cli:latest
   stage: sonarqube-check
   dependencies:
-    - run_tests
+    - install_dependencies_and_run_tests
   script:
     - sonar-scanner -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
   allow_failure: true
