@@ -3,9 +3,14 @@ import typeScriptEslintParser from '@typescript-eslint/parser';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import prettierConfig from 'eslint-config-prettier';
-import globals from 'globals';
+import prettierPlugin from 'eslint-plugin-prettier';
+import globals from './globals.json' with { type: 'json' };
+import zemosoConfig from './zemoso-eslint-config-flat.js';
+import jest from 'eslint-plugin-jest';
 
 export default [
+  prettierConfig,
+  ...zemosoConfig,
   {
     // ✅ Apply ESLint rules to all JS, JSX, TS, and TSX files
     files: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
@@ -13,7 +18,9 @@ export default [
     plugins: {
       '@typescript-eslint': typeScriptEslintPlugin,
       react: reactPlugin,
-      'react-hooks': reactHooksPlugin
+      'react-hooks': reactHooksPlugin,
+      jest,
+      prettier: prettierPlugin
     },
 
     languageOptions: {
@@ -26,12 +33,14 @@ export default [
         }
       },
       globals: {
-        ...globals.browser // Includes window, document, etc.
-      },
-      env: {
-        browser: true,
-        node: true,
-        es6: true
+        ...globals.browser, // Includes window, document, etc.
+        ...jest.configs.recommended.languageOptions?.globals,
+        jest: 'true',
+        describe: 'true',
+        test: 'true',
+        expect: 'true',
+        beforeEach: 'true',
+        afterEach: 'true'
       }
     },
 
@@ -41,9 +50,8 @@ export default [
       }
     },
 
-    extends: [prettierConfig],
-
     rules: {
+      ...jest.configs.recommended.rules,
       // ✅ React Rules
       'react/jsx-uses-react': 'off',
       'react/react-in-jsx-scope': 'off',
@@ -53,7 +61,12 @@ export default [
       'react-hooks/exhaustive-deps': 'warn',
 
       // ✅ Prettier Integration
-      'prettier/prettier': 'error'
+      'prettier/prettier': 'error',
+      'jest/no-disabled-tests': 'warn',
+      'jest/no-focused-tests': 'error',
+      'jest/no-identical-title': 'error',
+      'jest/prefer-to-have-length': 'warn',
+      'jest/valid-expect': 'error'
     }
   }
 ];

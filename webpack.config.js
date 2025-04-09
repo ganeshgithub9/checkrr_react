@@ -19,7 +19,7 @@ export default {
   ],
   resolve: {
     modules: [__dirname, 'src', 'node_modules'],
-    extensions: ['*', '.js', '.jsx', '.tsx', '.ts']
+    extensions: ['.js', '.jsx', '.tsx', '.ts']
   },
   module: {
     rules: [
@@ -34,10 +34,23 @@ export default {
         use: ['style-loader', 'css-loader']
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
-        exclude: /node_modules/,
-        use: ['file-loader']
+        test: /\.(png|svg|jpg|gif)$/, // we can use url-loader, @svgr/webpack instead of file-loader
+        type: 'asset/resource',
+        // generator: {
+        //   filename: 'images/[name][ext]'
+        // },
+        exclude: /node_modules/
+        //use: ['file-loader']
       }
+      // {
+      //   test: /\.(svg)$/, // we can use url-loader, @svgr/webpack instead of file-loader
+      //   type: 'asset/resource',
+      //   // generator: {
+      //   //   filename: 'images/[name][ext]'
+      //   // },
+      //   exclude: /node_modules/,
+      //   use: ['@svgr/webpack']
+      // }
     ]
   }
 };

@@ -1,0 +1,69 @@
+import { Meta, StoryObj } from '@storybook/react';
+import Candidates from '.';
+import FilterSVG from '../../../assets/svgs/filter.svg';
+import MoreSVG from '../../../assets/svgs/More.svg';
+import ExportIcon from '../../../assets/svgs/export.svg';
+import ManualOrderIcon from '../../../assets/svgs/manual_order.svg';
+
+const meta: Meta<typeof Candidates> = {
+  component: Candidates
+};
+
+export default meta;
+type Story = StoryObj<typeof Candidates>;
+
+export const DefaultCandidates: Story = {
+  args: {
+    headerProps: {
+      headingProps: {
+        variant: 'h1',
+        paragraph: false,
+        content: 'Candidates'
+      },
+      outlinedButtonProps: {
+        variant: 'outlined',
+        label: 'Export',
+        imageProps: {
+          src: ExportIcon,
+          alt: 'Export Icon'
+        }
+      },
+      containedButtonProps: {
+        variant: 'contained',
+        label: 'Manual Order',
+        imageProps: {
+          src: ManualOrderIcon,
+          alt: 'Manual Order Icon'
+        }
+      }
+    },
+    listUtilProps: {
+      headingTypographyProps: {
+        variant: 'subtitle1',
+        paragraph: false,
+        content: 'Candidate Information'
+      },
+      searchFieldProps: {
+        autoFocus: false,
+        placeholder: ' Search any candidate',
+        variant: 'outlined'
+      },
+      filterButtonProps: {
+        variant: 'outlined',
+
+        imageProps: {
+          src: FilterSVG,
+          alt: 'Filter SVG'
+        }
+      },
+      moreButtonProps: {
+        variant: 'outlined',
+
+        imageProps: {
+          src: MoreSVG,
+          alt: 'More SVG'
+        }
+      }
+    }
+  }
+};

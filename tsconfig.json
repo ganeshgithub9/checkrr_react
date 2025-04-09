@@ -27,6 +27,7 @@
     "baseUrl": "./",
     "module": "ES2022",
     "moduleResolution": "node",
+    "types": ["node", "jest", "@testing-library/jest-dom"],
 
     // Language and Environment Configuration
     "target": "ES2022",
@@ -38,8 +39,9 @@
 
     // Interop Constraints Configuration
     "esModuleInterop": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "skipLibCheck": true
   },
-  "include": ["src/**/**/*"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/**/*", ".storybook/", "src/custom.d.ts", "**/*.test.tsx","**/*.ts"],
+  "exclude": ["node_modules", "dist", "build"]
 }

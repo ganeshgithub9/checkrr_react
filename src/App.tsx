@@ -1,12 +1,12 @@
-const App = () => {
-  let a = 'hi';
-  console.log(a);
+import { BrowserRouter as Router } from 'react-router-dom';
+import HomeTemplate from './components/templates/Home';
+import SidebarComponent from './components/organisms/Sidebar';
+import AppRoutes from './AppRoutes';
 
-  return (
-    <div>
-      <h1>Hello, World!</h1>
-    </div>
-  );
-};
+const App = () => (
+  <Router>
+    <HomeTemplate sideBar={<SidebarComponent />} main={<AppRoutes />} />
+  </Router>
+);
 
 export default App;
