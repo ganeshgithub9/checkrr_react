@@ -1,7 +1,7 @@
 image: node:latest
 variables:
-  SONAR_USER_HOME: '${CI_PROJECT_DIR}/.sonar'
-  GIT_DEPTH: '0'
+  SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"
+  GIT_DEPTH: "0"
 stages:
   - test
   - sonarqube-check
@@ -9,16 +9,17 @@ stages:
 cache:
   paths:
     - node_modules/
-
-# install_dependencies:
-#   stage: test
-#   script:
-#     - npm ci
-install_dependencies_and_run_tests:
+install_dependencies:
   stage: test
   script:
-    - npm run pass-test
-    # - npm run install-and-test:cov
+    - npm ci
+run_tests:
+  stage: test
+  dependencies:
+    - install_dependencies
+  script:
+    - npm ci
+    - npm run test:cov
   artifacts:
     paths:
       - coverage/
@@ -27,8 +28,10 @@ sonarqube-check:
   image: sonarsource/sonar-scanner-cli:latest
   stage: sonarqube-check
   dependencies:
-    - install_dependencies_and_run_tests
+    - run_tests
   script:
+    - npm ci
+    - npm run test:cov
     - sonar-scanner -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
   allow_failure: true
   rules:
