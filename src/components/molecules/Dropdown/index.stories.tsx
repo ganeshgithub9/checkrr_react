@@ -22,9 +22,9 @@ export const SimpleDropdown: Story = {
       label: '10 per page'
     },
     menuItems: [
-      { value: 10, label: '10 per page' },
-      { value: 20, label: '20 per page' },
-      { value: 30, label: '30 per page' }
+      { value: 10, label: '10 per page', key: '10' },
+      { value: 20, label: '20 per page', key: '20' },
+      { value: 30, label: '30 per page', key: '30' }
     ]
   }
 };
@@ -43,9 +43,9 @@ export const NumberDropdown: Story = {
       label: '10 per page'
     },
     menuItems: [
-      { value: 10, label: '12' },
-      { value: 20, label: '13' },
-      { value: 30, label: '14' }
+      { value: 12, label: '12', key: '12' },
+      { value: 13, label: '13', key: '13' },
+      { value: 14, label: '14', key: '14' }
     ]
   }
 };

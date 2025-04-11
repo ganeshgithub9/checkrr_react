@@ -9,26 +9,30 @@ import {
   Typography
 } from '@mui/material';
 import { ReactNode, useEffect, useState } from 'react';
-import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import HeaderItem, { HeaderItemProps } from '../../molecules/HeaderItem';
-import Button, { CustomButtonProps } from '../../atoms/Button';
+import Button from '../../atoms/Button';
 import { theme } from '../../../themes';
+import {
+  buttonObjects,
+  candidateGeneralInfo,
+  candidateReportInfo,
+  courtSearchTableHeaders,
+  arrowIcons
+} from '../../constants/objects';
 
-import CandidateOrReportInfo, {
-  CandidateOrReportInfoProps
-} from '../../molecules/CandidateOrReportInfo';
-import UserSVG from '../../../assets/svgs/user.svg';
-import EmailSVG from '../../../assets/svgs/Email.svg';
-import NameSVG from '../../../assets/svgs/Name.svg';
-import PhoneSVG from '../../../assets/svgs/Phone.svg';
-import LocationSVG from '../../../assets/svgs/Location.svg';
-import SecuritySVG from '../../../assets/svgs/Security.svg';
-import CalendarSVG from '../../../assets/svgs/Calendar.svg';
-import ClearSVG from '../../../assets/svgs/Clear.svg';
-import AdverseActionSVG from '../../../assets/svgs/adverse_actions.svg';
-import PackageSVG from '../../../assets/svgs/Package.svg';
-import Calendar1SVG from '../../../assets/svgs/Calendar-1.svg';
-import ClockSVG from '../../../assets/svgs/Clock.svg';
+import CandidateOrReportInfo from '../../molecules/CandidateOrReportInfo';
+// import UserSVG from '../../../assets/svgs/user.svg';
+// import EmailSVG from '../../../assets/svgs/Email.svg';
+// import NameSVG from '../../../assets/svgs/Name.svg';
+// import PhoneSVG from '../../../assets/svgs/Phone.svg';
+// import LocationSVG from '../../../assets/svgs/Location.svg';
+// import SecuritySVG from '../../../assets/svgs/Security.svg';
+// import CalendarSVG from '../../../assets/svgs/Calendar.svg';
+// import ClearSVG from '../../../assets/svgs/Clear.svg';
+// import AdverseActionSVG from '../../../assets/svgs/adverse_actions.svg';
+// import PackageSVG from '../../../assets/svgs/Package.svg';
+// import Calendar1SVG from '../../../assets/svgs/Calendar-1.svg';
+// import ClockSVG from '../../../assets/svgs/Clock.svg';
 import Chip from '../../atoms/Chip';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -69,263 +73,10 @@ interface CourtSearchInfoProps {
   [key: string]: any;
 }
 
-interface CandidateOrReportInfoIDProps extends CandidateOrReportInfoProps {
-  id: string;
-  [key: string]: any;
-}
-
 interface CourtSearchDBProps {
   id?: string;
   list?: CourtSearchInfoProps[];
 }
-
-const buttonObjects: CustomButtonProps[] = [
-  {
-    variant: 'outlined',
-    label: 'Candidate Information',
-    endIcon: <KeyboardArrowDown />
-  },
-  {
-    variant: 'outlined',
-    label: 'Report Information',
-    endIcon: <KeyboardArrowDown />
-  },
-  {
-    variant: 'outlined',
-    label: 'Court Searches',
-    endIcon: <KeyboardArrowDown />
-  }
-];
-
-const candidateGeneralInfo: CandidateOrReportInfoIDProps[] = [
-  {
-    id: 'name',
-    imageProps: {
-      src: UserSVG,
-      alt: 'User SVG'
-    },
-    keyTypographyProps: {
-      variant: 'body1',
-      paragraph: false,
-      content: 'Name'
-    },
-    valueTypographyProps: {
-      variant: 'body1',
-      content: ''
-    }
-  },
-  {
-    id: 'email',
-    imageProps: {
-      src: EmailSVG,
-      alt: 'Email SVG'
-    },
-    keyTypographyProps: {
-      variant: 'body1',
-      paragraph: false,
-      content: 'Email'
-    },
-    valueTypographyProps: {
-      variant: 'body1',
-      content: ''
-    }
-  },
-  {
-    id: 'dob',
-    imageProps: {
-      src: NameSVG,
-      alt: 'Name SVG'
-    },
-    keyTypographyProps: {
-      variant: 'body1',
-      paragraph: false,
-      content: 'DOB'
-    },
-    valueTypographyProps: {
-      variant: 'body1',
-      content: ''
-    }
-  },
-  {
-    id: 'phone',
-    imageProps: {
-      src: PhoneSVG,
-      alt: 'Phone SVG'
-    },
-    keyTypographyProps: {
-      variant: 'body1',
-      paragraph: false,
-      content: 'Phone'
-    },
-    valueTypographyProps: {
-      variant: 'body1',
-      content: ''
-    }
-  },
-  {
-    id: 'zipcode',
-    imageProps: {
-      src: LocationSVG,
-      alt: 'Location SVG'
-    },
-    keyTypographyProps: {
-      variant: 'body1',
-      paragraph: false,
-      content: 'Zipcode'
-    },
-    valueTypographyProps: {
-      variant: 'body1',
-      content: ''
-    }
-  },
-  {
-    id: 'socialSecurity',
-    imageProps: {
-      src: SecuritySVG,
-      alt: 'Security SVG'
-    },
-    keyTypographyProps: {
-      variant: 'body1',
-      paragraph: false,
-      content: 'Social Security'
-    },
-    valueTypographyProps: {
-      variant: 'body1',
-      content: ''
-    }
-  },
-  {
-    id: 'driversLicense',
-    imageProps: {
-      src: NameSVG,
-      alt: 'Name SVG'
-    },
-    keyTypographyProps: {
-      variant: 'body1',
-      paragraph: false,
-      content: 'Drivers License'
-    },
-    valueTypographyProps: {
-      variant: 'body1',
-      content: ''
-    }
-  },
-  {
-    id: 'createdAt',
-    imageProps: {
-      src: CalendarSVG,
-      alt: 'Calendar SVG'
-    },
-    keyTypographyProps: {
-      variant: 'body1',
-      paragraph: false,
-      content: 'Created At'
-    },
-    valueTypographyProps: {
-      variant: 'body1',
-      content: ''
-    }
-  }
-];
-
-const candidateReportInfo: CandidateOrReportInfoIDProps[] = [
-  {
-    id: 'status',
-    imageProps: {
-      src: ClearSVG,
-      alt: 'Clear SVG'
-    },
-    keyTypographyProps: {
-      variant: 'body1',
-      paragraph: false,
-      content: 'Status'
-    },
-    valueTypographyProps: {
-      variant: 'body1',
-      content: ''
-    }
-  },
-  {
-    id: 'adjudication',
-    imageProps: {
-      src: AdverseActionSVG,
-      alt: 'Adverse Action SVG'
-    },
-    keyTypographyProps: {
-      variant: 'body1',
-      paragraph: false,
-      content: 'Adjudication'
-    },
-    valueTypographyProps: {
-      variant: 'body1',
-      content: ''
-    }
-  },
-  {
-    id: 'package',
-    imageProps: {
-      src: PackageSVG,
-      alt: 'Package SVG'
-    },
-    keyTypographyProps: {
-      variant: 'body1',
-      paragraph: false,
-      content: 'Package'
-    },
-    valueTypographyProps: {
-      variant: 'body1',
-      content: ''
-    }
-  },
-  {
-    id: 'createdAt',
-    imageProps: {
-      src: CalendarSVG,
-      alt: 'Calendar SVG'
-    },
-    keyTypographyProps: {
-      variant: 'body1',
-      paragraph: false,
-      content: 'Created At'
-    },
-    valueTypographyProps: {
-      variant: 'body1',
-      content: ''
-    }
-  },
-  {
-    id: 'completedDate',
-    imageProps: {
-      src: Calendar1SVG,
-      alt: 'Calendar1 SVG'
-    },
-    keyTypographyProps: {
-      variant: 'body1',
-      paragraph: false,
-      content: 'Completed Date'
-    },
-    valueTypographyProps: {
-      variant: 'body1',
-      content: ''
-    }
-  },
-  {
-    id: 'turnAroundTime',
-    imageProps: {
-      src: ClockSVG,
-      alt: 'Clock SVG'
-    },
-    keyTypographyProps: {
-      variant: 'body1',
-      paragraph: false,
-      content: 'Turn Around Time'
-    },
-    valueTypographyProps: {
-      variant: 'body1',
-      content: ''
-    }
-  }
-];
 
 const stylingObjects = {
   buttonStyling: {
@@ -344,22 +95,20 @@ const stylingObjects = {
   }
 };
 
-const courtSearchTableHeaders = ['Search', 'Status', 'Date'];
-const icons: ReactNode[] = [<KeyboardArrowDown />, <KeyboardArrowUp />];
 const conditionalComponents = [
   (candidateInfo: any): ReactNode => (
     <Box sx={stylingObjects.boxStyling}>
-      {candidateGeneralInfo.map((candidateInf, index) => {
+      {candidateGeneralInfo.map((candidateInf) => {
         candidateInf.valueTypographyProps.content = candidateInfo[candidateInf.id];
-        return <CandidateOrReportInfo {...candidateInf} key={index} />;
+        return <CandidateOrReportInfo {...candidateInf} key={candidateInf.id} />;
       })}
     </Box>
   ),
   (reportInfo: any): ReactNode => (
     <Box sx={stylingObjects.boxStyling}>
-      {candidateReportInfo.map((reportInf, index) => {
+      {candidateReportInfo.map((reportInf) => {
         reportInf.valueTypographyProps.content = reportInfo[reportInf.id];
-        return <CandidateOrReportInfo {...reportInf} key={index} />;
+        return <CandidateOrReportInfo {...reportInf} key={reportInf.id} />;
       })}
     </Box>
   ),
@@ -367,16 +116,16 @@ const conditionalComponents = [
     <Table>
       <TableHead>
         <TableRow>
-          {courtSearchTableHeaders.map((header, index) => (
-            <TableCell key={index}>
+          {courtSearchTableHeaders.map((header) => (
+            <TableCell key={header}>
               <Typography sx={theme.typography.caption1 || {}}>{header}</Typography>
             </TableCell>
           ))}
         </TableRow>
       </TableHead>
       <TableBody>
-        {courtSearches?.list?.map((record: CourtSearchInfoProps, index: number) => (
-          <TableRow key={index}>
+        {courtSearches?.list?.map((record: CourtSearchInfoProps) => (
+          <TableRow key={record.id}>
             <TableCell>
               <Typography sx={theme.typography.body2 || {}}>{record.search}</Typography>
             </TableCell>
@@ -422,7 +171,6 @@ const CandidateInfoComponent = (props: CandidateInfoProps) => {
   }
   if (props.headerProps.headingProps) {
     props.headerProps.headingProps.content = candidateName;
-    [];
   }
 
   useEffect(() => {
@@ -449,15 +197,21 @@ const CandidateInfoComponent = (props: CandidateInfoProps) => {
     <Stack spacing={5}>
       <HeaderItem {...props.headerProps} />
       {buttonObjects.map((buttonData, index) => {
-        const param = index === 0 ? candidateInfo : index === 1 ? reportInfo : courtSearchInfo;
+        let param = candidateInfo;
+        if (index === 1) {
+          param = reportInfo;
+        } else if (index === 2) {
+          param = courtSearchInfo;
+        }
+
         return (
           <>
             <Button
               {...buttonData}
-              endIcon={icons[currentIcons[index]]}
+              endIcon={arrowIcons[currentIcons[index]]}
               sx={{ ...stylingObjects.buttonStyling, textTransform: 'capitalize' }}
               onClick={() => handleClick(index)}
-              key={index}
+              key={buttonData.label}
             />
             {isButtonOpen[index] ? conditionalComponents[index](param) : null}
           </>

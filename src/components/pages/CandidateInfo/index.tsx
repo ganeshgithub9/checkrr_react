@@ -1,36 +1,36 @@
-import HomeLayout, { HomeTemplateProps } from '../../templates/Home';
-import Sidebar from '../../organisms/Sidebar';
 import CandidateInfo from '../../organisms/CandidateInfo';
 import BackIcon from '../../../assets/svgs/Back.svg';
-
-const HomeLayoutProps: HomeTemplateProps = {
-  sideBar: <Sidebar />,
-  main: (
-    <CandidateInfo
-      headerProps={{
-        imageProps: {
-          src: BackIcon,
-          alt: 'Back Icon'
-        },
-        headingProps: {
-          variant: 'h1',
-          paragraph: false,
-          content: 'John Smith'
-        },
-        outlinedButtonProps: {
-          variant: 'outlined',
-          label: 'Pre-Adverse Action'
-        },
-        containedButtonProps: {
-          variant: 'contained',
-          label: 'Engage'
-        }
-      }}
-    />
-  )
-};
+import { useNavigate } from 'react-router-dom';
 
 const CandidateInfoPage = () => {
-  return <HomeLayout {...HomeLayoutProps} />;
+  const navigate = useNavigate();
+  return (
+    <>
+      <CandidateInfo
+        headerProps={{
+          imageProps: {
+            src: BackIcon,
+            alt: 'Back Icon',
+            onClick: () => {
+              navigate('/candidates');
+            }
+          },
+          headingProps: {
+            variant: 'h1',
+            paragraph: false,
+            content: ''
+          },
+          outlinedButtonProps: {
+            variant: 'outlined',
+            label: 'Pre-Adverse Action'
+          },
+          containedButtonProps: {
+            variant: 'contained',
+            label: 'Engage'
+          }
+        }}
+      />
+    </>
+  );
 };
 export default CandidateInfoPage;

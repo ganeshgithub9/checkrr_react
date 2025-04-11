@@ -1,4 +1,3 @@
-import {} from '@mui/material';
 import {
   Stack,
   styled,
@@ -15,8 +14,9 @@ import { useNavigate } from 'react-router-dom';
 import { theme } from '../../../themes';
 import HeaderItem, { HeaderItemProps } from '../../molecules/HeaderItem';
 import ListUtil, { ListUtilProps } from '../../molecules/ListUtil';
-import PagingItem, { PagingItemProps } from '../../molecules/PagingItem';
 import Chip from '../../atoms/Chip';
+import { candidateTableHeaders, pagingItemPropsObject } from '../../constants/objects';
+import PagingItem from '../../molecules/PagingItem';
 
 const StyledTableRow = styled(TableRow)(() => ({
   height: '45px',
@@ -28,12 +28,12 @@ const StyledTableCell = styled(TableCell)(() => ({
   padding: '2px'
 }));
 
-export interface MainProps {
+export interface CandidatesProps {
   headerProps: HeaderItemProps;
   listUtilProps: ListUtilProps;
 }
 
-interface CandidateDataProps {
+interface CandidateDataItemProps {
   id?: string;
   name?: string;
   adjudicaion?: string;
@@ -42,39 +42,19 @@ interface CandidateDataProps {
   date?: string;
 }
 
-const tableHeaders = ['NAME', 'ADJUDICATION', 'STATUS', 'LOCATION', 'DATE'];
+interface CandidateDataProps {
+  pageSize?: number;
+  totalRecords?: number;
+  list?: CandidateDataItemProps[];
+  [key: string]: any;
+}
 
-const pagingItemProps: PagingItemProps = {
-  pagingTypographyProps: {
-    variant: 'body1',
-    content: '10 out of 84 results'
-  },
-  dropdownProps: {
-    inputLabelProps: {
-      label: 'page size'
-    },
-    selectProps: {
-      sx: {
-        width: 120,
-        height: 26
-      },
-      value: 10,
-      label: '10 per page'
-    },
-    menuItems: [
-      { value: 10, label: '10 per page' },
-      { value: 20, label: '20 per page' },
-      { value: 30, label: '30 per page' }
-    ]
-  },
-  paginationProps: {
-    count: 3,
-    shape: 'rounded'
-  }
+const candidatesListPagingItemProps = {
+  ...pagingItemPropsObject
 };
 
-const CandidatesComponent = (props: MainProps) => {
-  const [candidateData, setCandidateData] = useState([]);
+const CandidatesComponent = (props: CandidatesProps) => {
+  const [candidateData, setCandidateData] = useState({} as CandidateDataProps);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -84,6 +64,10 @@ const CandidatesComponent = (props: MainProps) => {
       .catch((err) => alert(err));
   }, [candidateData]);
 
+  if (candidatesListPagingItemProps.pagingTypographyProps && candidateData.pageSize) {
+    candidatesListPagingItemProps.pagingTypographyProps.content = ` ${candidateData.pageSize} out of ${candidateData.totalRecords} results`;
+  }
+
   return (
     <Stack spacing={7}>
       <HeaderItem {...props.headerProps} />
@@ -91,16 +75,19 @@ const CandidatesComponent = (props: MainProps) => {
       <Table>
         <TableHead>
           <StyledTableRow>
-            {tableHeaders.map((header) => (
-              <StyledTableCell>
+            {candidateTableHeaders.map((header) => (
+              <StyledTableCell key={header}>
                 <Typography sx={theme.typography.caption1 || {}}>{header}</Typography>
               </StyledTableCell>
             ))}
           </StyledTableRow>
         </TableHead>
         <TableBody>
-          {candidateData.map((record: CandidateDataProps) => (
-            <StyledTableRow onClick={() => navigate(`/candidates/${record.id}`)}>
+          {candidateData.list?.map((record: CandidateDataItemProps) => (
+            <StyledTableRow
+              onClick={() => navigate(`/candidates/${record.id}`)}
+              key={record.id}
+              data-testid="candidate-item">
               <StyledTableCell>
                 <Typography sx={theme.typography.body2 || {}}>{record.name}</Typography>
               </StyledTableCell>
@@ -120,7 +107,7 @@ const CandidatesComponent = (props: MainProps) => {
           ))}
         </TableBody>
       </Table>
-      <PagingItem {...pagingItemProps} />
+      <PagingItem {...pagingItemPropsObject} />
     </Stack>
   );
 };

@@ -1,9 +1,8 @@
 import { FormGroup, Stack, Button } from '@mui/material';
 import { CheckBox } from '@mui/icons-material';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import React from 'react';
 import HeaderItem, { HeaderItemProps } from '../../molecules/HeaderItem';
 import Checkbox from '../../atoms/Checkbox';
 import AutoSendNoticeItem, { AutoSendNoticeItemProps } from '../../molecules/AutoSendNoticeItem';
@@ -12,17 +11,13 @@ import MailSuccessItem from '../../molecules/MailSuccessItem';
 import { CandidateGenearalInfoProps } from '../CandidateInfo';
 import Modal from '../../molecules/Modal';
 import SuccessGIF from '../../../assets/gifs/success.gif';
+import { checkboxLabels } from '../../constants/objects';
 
 export interface CandidateInfoProps {
   headerProps: HeaderItemProps;
   autoSendNoticeItemProps: AutoSendNoticeItemProps;
 }
 
-const checkboxLabels = [
-  'Driving while license suspended',
-  'Assault Domestic Violence',
-  'Unable to verify employment history'
-];
 const MailComponent = (props: CandidateInfoProps) => {
   const { candId } = useParams();
   const navigate = useNavigate();
@@ -88,7 +83,9 @@ const MailComponent = (props: CandidateInfoProps) => {
         </p>
         <h3>Select the charges for the Pre-Adverse action</h3>
         <ul>
-          {checks.map((isCheck, index) => (isCheck ? <li>{checkboxLabels[index]}</li> : null))}
+          {checks.map((isCheck, index) =>
+            isCheck ? <li key={checkboxLabels[index].id}>{checkboxLabels[index].label}</li> : null
+          )}
         </ul>
 
         <p>
@@ -157,11 +154,11 @@ const MailComponent = (props: CandidateInfoProps) => {
           </p>
           <h3>Select the charges for the Pre-Adverse action</h3>
           <FormGroup>
-            {checkboxLabels.map((label, index) => (
+            {checkboxLabels.map((labelObj, index) => (
               <Checkbox
-                key={index}
+                key={labelObj.id}
                 control={<CheckBox />}
-                label={label}
+                label={labelObj.label}
                 onChange={() => handleChecks(index)}
                 checked={checks[index]}
               />
@@ -181,17 +178,17 @@ const MailComponent = (props: CandidateInfoProps) => {
         open={isNoticeClicked}
         onClose={() => {
           setIsNoticeClicked(false);
-        }}
-        children={mailReviewNode}
-      />
+        }}>
+        {mailReviewNode}
+      </Modal>
       <Modal
         open={isNoticeSubmitted}
         onClose={() => {
           setIsNoticeSubmitted(false);
           navigate('/candidates');
-        }}
-        children={mailSuccessNode}
-      />
+        }}>
+        {mailSuccessNode}
+      </Modal>
     </Stack>
   );
 };

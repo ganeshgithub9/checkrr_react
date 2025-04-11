@@ -1,26 +1,28 @@
-import HomeLayout, { HomeTemplateProps } from '../../templates/Home';
-import Sidebar from '../../organisms/Sidebar';
+import { useNavigate } from 'react-router-dom';
 import Mail from '../../organisms/Mail';
 
 import BackIcon from '../../../assets/svgs/Back.svg';
 
-const HomeLayoutProps: HomeTemplateProps = {
-  sideBar: <Sidebar />,
-  main: (
-    <Mail
-      {...{
-        headerProps: {
+const PreAdverseActionNoticePage = () => {
+  const navigate = useNavigate();
+  return (
+    <>
+      <Mail
+        headerProps={{
           imageProps: {
             src: BackIcon,
-            alt: 'Back Icon'
+            alt: 'Back Icon',
+            onClick: () => {
+              navigate(-1);
+            }
           },
           headingProps: {
             variant: 'h1',
             paragraph: false,
             content: 'Pre-Adverse action notice'
           }
-        },
-        autoSendNoticeItemProps: {
+        }}
+        autoSendNoticeItemProps={{
           noticeButtonProps: {
             variant: 'contained',
             label: 'Notice'
@@ -37,13 +39,9 @@ const HomeLayoutProps: HomeTemplateProps = {
           daysTextFieldProps: {
             variant: 'outlined'
           }
-        }
-      }}
-    />
-  )
-};
-
-const PreAdverseActionNoticePage = () => {
-  return <HomeLayout {...HomeLayoutProps} />;
+        }}
+      />
+    </>
+  );
 };
 export default PreAdverseActionNoticePage;

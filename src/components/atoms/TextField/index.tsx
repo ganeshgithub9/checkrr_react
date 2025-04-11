@@ -18,7 +18,7 @@ export type CustomTextFieldProps =
           onChange?: ChangeEventHandler;
           placeholder?: string;
           size?: 'small' | 'medium';
-          value?: any | undefined;
+          value?: string;
           variant?: TextFieldVariants;
         }
     );

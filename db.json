@@ -1,5 +1,8 @@
 {
-  "candidates-adjudication": [
+  "candidates-adjudication": {
+    "pageSize": 10,
+    "totalRecords": 15,
+    "list":[
     {
       "id": "1",
       "name": "John",
@@ -81,7 +84,7 @@
       "location": "India",
       "date": "30/3/2025"
     }
-  ],
+  ]},
   "candidate-courtsearches": [
     {
       "id": "1",

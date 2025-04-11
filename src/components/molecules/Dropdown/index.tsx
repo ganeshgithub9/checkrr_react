@@ -35,7 +35,7 @@ const DropdownComponent = (props: CustomDropdownProps) => {
       <FormControl {...props.formControlProps}>
         <InputLabel {...props.inputLabelProps}>{props.inputLabelProps?.label}</InputLabel>
         <StyledSelect {...props.selectProps}>
-          {props.menuItems?.map((item, index) => <MenuItem {...item} key={index} />)}
+          {props.menuItems?.map((item) => <MenuItem {...item} />)}
         </StyledSelect>
       </FormControl>
     </Box>

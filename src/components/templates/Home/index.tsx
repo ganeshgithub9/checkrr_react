@@ -1,8 +1,9 @@
 import { Box } from '@mui/material';
 import { ReactNode } from 'react';
+import { Outlet } from 'react-router-dom';
+import SidebarComponent from 'src/components/organisms/Sidebar';
 
 export interface HomeTemplateProps {
-  sideBar: ReactNode;
   main: ReactNode;
 }
 
@@ -16,11 +17,15 @@ const stylingObjects = {
     gap: '10px'
   }
 };
-const HomeTemplate = (props: HomeTemplateProps) => {
+const HomeTemplate = () => {
   return (
     <Box sx={stylingObjects.outerBoxStyling}>
-      <div style={{ width: '238px', height: '100%' }}>{props.sideBar}</div>
-      <div style={{ width: '1056px', height: '100%' }}>{props.main}</div>
+      <div style={{ width: '238px', height: '100%' }}>
+        <SidebarComponent />
+      </div>
+      <div style={{ width: '1056px', height: '100%' }}>
+        <Outlet />
+      </div>
     </Box>
   );
 };

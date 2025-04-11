@@ -1,17 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { List, ListItem, Box } from '@mui/material';
-import Image, { ImageProps } from '../../atoms/Image';
-import CandidatesSVG from '../../../assets/svgs/candidates.svg';
-import HomeSVG from '../../../assets/svgs/home.svg';
-import AdverseActionsSVG from '../../../assets/svgs/adverse_actions.svg';
-import LogsSVG from '../../../assets/svgs/logs.svg';
-import AnalyticsSVG from '../../../assets/svgs/analytics.svg';
-import AccountSVG from '../../../assets/svgs/account.svg';
-import ScreeningsSVG from '../../../assets/svgs/screenings.svg';
-import NavBarItem, { NavBarItemProps } from '../../molecules/NavBarItem';
+import Image from '../../atoms/Image';
+import { imagePropsObject, navigationObjects } from '../../constants/objects';
+import NavBarItem from '../../molecules/NavBarItem';
 import ProfileItem, { ProfileItemProps } from '../../molecules/ProfileItem';
-import RecruitImage from '../../../assets/images/recruit.png';
 import SampleAvatar from '../../../assets/images/profile.png';
 import LogOutSVG from '../../../assets/svgs/logout.svg';
 import { theme } from '../../../themes';
@@ -36,91 +29,6 @@ const stylingObjects = {
     gap: '16px'
   }
 };
-
-const imageProps: ImageProps = {
-  src: RecruitImage,
-  alt: 'Recruit Image'
-};
-
-const navigationObjects: (NavBarItemProps & { to: string })[] = [
-  {
-    to: '/',
-    imageProps: {
-      src: HomeSVG,
-      alt: 'Home SVG'
-    },
-    typographyProps: {
-      variant: 'body1',
-      content: 'Home'
-    }
-  },
-  {
-    to: '/candidates',
-    imageProps: {
-      src: CandidatesSVG,
-      alt: 'Candidates SVG'
-    },
-    typographyProps: {
-      variant: 'body1',
-      content: 'Candidates'
-    }
-  },
-  {
-    to: '/adverse-actions',
-    imageProps: {
-      src: AdverseActionsSVG,
-      alt: 'Adverse Actions SVG'
-    },
-    typographyProps: {
-      variant: 'body1',
-      content: 'Adverse Actions'
-    }
-  },
-  {
-    to: '/logs',
-    imageProps: {
-      src: LogsSVG,
-      alt: 'Logs SVG'
-    },
-    typographyProps: {
-      variant: 'body1',
-      content: 'Logs'
-    }
-  },
-  {
-    to: '/analytics',
-    imageProps: {
-      src: AnalyticsSVG,
-      alt: 'Analytics SVG'
-    },
-    typographyProps: {
-      variant: 'body1',
-      content: 'Analytics'
-    }
-  },
-  {
-    to: '/account',
-    imageProps: {
-      src: AccountSVG,
-      alt: 'Account SVG'
-    },
-    typographyProps: {
-      variant: 'body1',
-      content: 'Account'
-    }
-  },
-  {
-    to: '/screenings',
-    imageProps: {
-      src: ScreeningsSVG,
-      alt: 'Screenings SVG'
-    },
-    typographyProps: {
-      variant: 'body1',
-      content: 'Screenings'
-    }
-  }
-];
 
 const profileItemProps: ProfileItemProps = {
   avatarProps: {
@@ -151,7 +59,7 @@ const SidebarComponent = () => {
     <Box sx={stylingObjects.outerBoxStyling}>
       <List sx={stylingObjects.listStyling}>
         <ListItem sx={{ height: '44px' }}>
-          <Image {...imageProps} width={'78px'} height={'20px'} />
+          <Image {...imagePropsObject} width={'78px'} height={'20px'} />
         </ListItem>
       </List>
       <nav>
