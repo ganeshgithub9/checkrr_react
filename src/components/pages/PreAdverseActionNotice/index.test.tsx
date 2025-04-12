@@ -1,8 +1,8 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import axios from 'axios';
-import Mail, { CandidateInfoProps } from '.';
+import Mail, { CandidateInfoProps } from '../../organisms/Mail';
 import { describe, test, expect } from '@jest/globals';
 
 import BackIcon from '../../../assets/svgs/Back.svg';
@@ -108,7 +108,9 @@ describe('Mail component', () => {
   test('renders the Mail review content on Modal after clicking on preview', async () => {
     render(<Mail {...defaultProps} />);
     const assaultCheckbox = screen.getByRole('checkbox', { name: 'Assault Domestic Violence' });
+
     await userEvent.click(assaultCheckbox);
+
     expect(assaultCheckbox).toBeChecked();
     const noticeButton = screen.getByRole('button', { name: 'Notice' });
     await userEvent.click(noticeButton);

@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { ReactNode } from 'react';
 import { Outlet } from 'react-router-dom';
-import SidebarComponent from 'src/components/organisms/Sidebar';
+import SidebarComponent from '../../organisms/Sidebar';
 
 export interface HomeTemplateProps {
   main: ReactNode;

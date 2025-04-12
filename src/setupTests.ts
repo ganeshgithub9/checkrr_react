@@ -12,5 +12,8 @@ class MockTextDecoder {
   }
 }
 
+// src/setupTests.ts
+window.alert = jest.fn();
+
 globalThis.TextEncoder = MockTextEncoder as any;
 globalThis.TextDecoder = MockTextDecoder as any;

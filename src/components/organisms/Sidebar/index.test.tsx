@@ -1,11 +1,8 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import axios from 'axios';
 import Sidebar from '.';
 import { describe, test, expect } from '@jest/globals';
-
-import BackIcon from '../../../assets/svgs/Back.svg';
 
 import { MemoryRouter } from 'react-router-dom';
 
@@ -85,7 +82,7 @@ describe('Sidebar component', () => {
   //     }
   //   };
 
-  test('renders Sidebar component with the required molecules and atoms', async () => {
+  test('renders Sidebar component with all the navigation buttons along with icons', async () => {
     // const { container } = render(<Sidebar {...defaultProps} />);
     render(
       <MemoryRouter>
@@ -93,26 +90,33 @@ describe('Sidebar component', () => {
       </MemoryRouter>
     );
 
-    // expect(screen.queryByRole('heading', { level: 1 })).toBeInTheDocument();
-    // expect(screen.queryByRole('img', { name: 'Export Icon' })).toBeInTheDocument();
-    // expect(screen.queryByRole('img', { name: 'Manual Order Icon' })).toBeInTheDocument();
-    // expect(screen.queryByRole('heading', { level: 1 })).toBeInTheDocument();
-    // expect(screen.queryByRole('img', { name: 'Filter SVG' })).toBeInTheDocument();
-    // expect(screen.queryByRole('img', { name: 'More SVG' })).toBeInTheDocument();
-    // expect(screen.queryByRole('textbox')).toBeInTheDocument();
-    // //expect(screen.queryByRole('paragraph', { name: '10 out of 15 results' })).toBeInTheDocument();
-    // expect(screen.getByRole('combobox')).toBeInTheDocument();
-    // const buttonElements = container.querySelectorAll('.MuiPaginationItem-root');
-    // expect(buttonElements).toHaveLength(5);
-    // const comboBox = screen.getByRole('combobox');
-    // await userEvent.click(comboBox);
-    // expect(screen.queryAllByRole('menuitem')).toHaveLength(3);
+    expect(screen.queryByText('Home')).toBeInTheDocument();
+    expect(screen.queryByRole('img', { name: 'Home SVG' })).toBeInTheDocument();
+    expect(screen.queryByText('Candidates')).toBeInTheDocument();
+    expect(screen.queryByRole('img', { name: 'Candidates SVG' })).toBeInTheDocument();
+    expect(screen.queryByText('Adverse Actions')).toBeInTheDocument();
+    expect(screen.queryByRole('img', { name: 'Adverse Actions SVG' })).toBeInTheDocument();
+    expect(screen.queryByText('Logs')).toBeInTheDocument();
+    expect(screen.queryByRole('img', { name: 'Logs SVG' })).toBeInTheDocument();
+    expect(screen.queryByText('Analytics')).toBeInTheDocument();
+    expect(screen.queryByRole('img', { name: 'Analytics SVG' })).toBeInTheDocument();
+    expect(screen.queryByText('Account')).toBeInTheDocument();
+    expect(screen.queryByRole('img', { name: 'Account SVG' })).toBeInTheDocument();
+    expect(screen.queryByText('Screenings')).toBeInTheDocument();
+    expect(screen.queryByRole('img', { name: 'Screenings SVG' })).toBeInTheDocument();
   });
 
-  //   test('renders the Candidate list', async () => {
-  //     render(<Sidebar {...defaultProps} />);
-  //     const items = await screen.findAllByTestId('candidate-item');
+  test('renders Sidebar component with Recruit image and user details', async () => {
+    render(
+      <MemoryRouter>
+        <Sidebar />
+      </MemoryRouter>
+    );
 
-  //     expect(items).toHaveLength(2);
-  //   });
+    expect(screen.queryByRole('img', { name: 'Recruit Image' })).toBeInTheDocument();
+    expect(screen.queryByRole('img', { name: 'CheckrrAvatar' })).toBeInTheDocument();
+    expect(screen.queryByRole('img', { name: 'Logout SVG' })).toBeInTheDocument();
+    expect(screen.queryByText(/jw@abc.com/i)).toBeInTheDocument();
+    expect(screen.queryByText(/John Wesley/i)).toBeInTheDocument();
+  });
 });
