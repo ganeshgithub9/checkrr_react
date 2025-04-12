@@ -8,7 +8,7 @@ declare module '@mui/material/styles' {
     h2?: React.CSSProperties;
     subtitle1?: SxProps<Theme>;
     body1?: SxProps<Theme>;
-    body2?: SxProps<Theme>;
+    body2: SxProps<Theme>;
     caption1?: SxProps<Theme>;
     caption2?: React.CSSProperties;
   }
@@ -18,7 +18,7 @@ declare module '@mui/material/styles' {
     h2?: React.CSSProperties;
     subtitle1?: SxProps<Theme>;
     body1?: SxProps<Theme>;
-    body2?: SxProps<Theme>;
+    body2: SxProps<Theme>;
     caption1?: SxProps<Theme>;
     caption2?: React.CSSProperties;
   }

@@ -62,7 +62,7 @@ const CandidatesComponent = (props: CandidatesProps) => {
       .get('http://localhost:3000/candidates-adjudication')
       .then((res) => setCandidateData(res.data))
       .catch((err) => alert(err));
-  }, [candidateData]);
+  }, []);
 
   if (candidatesListPagingItemProps.pagingTypographyProps && candidateData.pageSize) {
     candidatesListPagingItemProps.pagingTypographyProps.content = ` ${candidateData.pageSize} out of ${candidateData.totalRecords} results`;
@@ -85,23 +85,26 @@ const CandidatesComponent = (props: CandidatesProps) => {
         <TableBody>
           {candidateData.list?.map((record: CandidateDataItemProps) => (
             <StyledTableRow
-              onClick={() => navigate(`/candidates/${record.id}`)}
+              onClick={(event) => {
+                event.stopPropagation();
+                navigate(`/candidates/${record.id}`);
+              }}
               key={record.id}
               data-testid="candidate-item">
               <StyledTableCell>
-                <Typography sx={theme.typography.body2 || {}}>{record.name}</Typography>
+                <Typography sx={theme.typography.body2}>{record.name}</Typography>
               </StyledTableCell>
               <StyledTableCell>
-                <Typography sx={theme.typography.body2 || {}}>{record.adjudicaion}</Typography>
+                <Typography sx={theme.typography.body2}>{record.adjudicaion}</Typography>
               </StyledTableCell>
               <StyledTableCell>
                 <Chip label={record.status} variant="filled" />
               </StyledTableCell>
               <StyledTableCell>
-                <Typography sx={theme.typography.body2 || {}}>{record.location}</Typography>
+                <Typography sx={theme.typography.body2}>{record.location}</Typography>
               </StyledTableCell>
               <StyledTableCell>
-                <Typography sx={theme.typography.body2 || {}}>{record.date}</Typography>
+                <Typography sx={theme.typography.body2}>{record.date}</Typography>
               </StyledTableCell>
             </StyledTableRow>
           ))}

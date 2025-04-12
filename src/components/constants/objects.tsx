@@ -9,7 +9,7 @@ import LocationSVG from '../../assets/svgs/Location.svg';
 import SecuritySVG from '../../assets/svgs/Security.svg';
 import CalendarSVG from '../../assets/svgs/Calendar.svg';
 import ClearSVG from '../../assets/svgs/Clear.svg';
-import AdverseActionSVG from '../../assets/svgs/adverse_actions.svg';
+import AdverseActionsSVG from '../../assets/svgs/adverse_actions.svg';
 import PackageSVG from '../../assets/svgs/Package.svg';
 import Calendar1SVG from '../../assets/svgs/Calendar-1.svg';
 import ClockSVG from '../../assets/svgs/Clock.svg';
@@ -17,7 +17,6 @@ import { CandidateOrReportInfoProps } from '../molecules/CandidateOrReportInfo';
 import { PagingItemProps } from '../molecules/PagingItem';
 import CandidatesSVG from '../../assets/svgs/candidates.svg';
 import HomeSVG from '../../assets/svgs/home.svg';
-import AdverseActionsSVG from '../../assets/svgs/adverse_actions.svg';
 import LogsSVG from '../../assets/svgs/logs.svg';
 import AnalyticsSVG from '../../assets/svgs/analytics.svg';
 import AccountSVG from '../../assets/svgs/account.svg';
@@ -328,7 +327,7 @@ export const candidateReportInfo: CandidateOrReportInfoIDProps[] = [
   {
     id: 'adjudication',
     imageProps: {
-      src: AdverseActionSVG,
+      src: AdverseActionsSVG,
       alt: 'Adverse Action SVG'
     },
     keyTypographyProps: {

@@ -2,7 +2,8 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import axios from 'axios';
-import Candidates, { CandidatesProps } from '../../organisms/Candidates';
+//import Candidates, { CandidatesProps } from '../../organisms/Candidates';
+import CandidatesPage from '.';
 import { describe, test, expect } from '@jest/globals';
 import FilterSVG from '../../../assets/svgs/filter.svg';
 import MoreSVG from '../../../assets/svgs/More.svg';
@@ -55,62 +56,62 @@ describe('Candidates component', () => {
   //   const mockBackClick = jest.fn(),
   //     mockEngageClick = jest.fn();
 
-  const defaultProps: CandidatesProps = {
-    headerProps: {
-      headingProps: {
-        variant: 'h1',
-        paragraph: false,
-        content: 'Candidates'
-      },
-      outlinedButtonProps: {
-        variant: 'outlined',
-        label: 'Export',
-        imageProps: {
-          src: ExportIcon,
-          alt: 'Export Icon'
-        }
-      },
-      containedButtonProps: {
-        variant: 'contained',
-        label: 'Manual Order',
-        imageProps: {
-          src: ManualOrderIcon,
-          alt: 'Manual Order Icon'
-        }
-      }
-    },
-    listUtilProps: {
-      headingTypographyProps: {
-        variant: 'subtitle1',
-        paragraph: false,
-        content: 'Candidate Information'
-      },
-      searchFieldProps: {
-        autoFocus: false,
-        placeholder: ' Search any candidate',
-        variant: 'outlined'
-      },
-      filterButtonProps: {
-        variant: 'outlined',
+  //   const defaultProps: CandidatesProps = {
+  //     headerProps: {
+  //       headingProps: {
+  //         variant: 'h1',
+  //         paragraph: false,
+  //         content: 'Candidates'
+  //       },
+  //       outlinedButtonProps: {
+  //         variant: 'outlined',
+  //         label: 'Export',
+  //         imageProps: {
+  //           src: ExportIcon,
+  //           alt: 'Export Icon'
+  //         }
+  //       },
+  //       containedButtonProps: {
+  //         variant: 'contained',
+  //         label: 'Manual Order',
+  //         imageProps: {
+  //           src: ManualOrderIcon,
+  //           alt: 'Manual Order Icon'
+  //         }
+  //       }
+  //     },
+  //     listUtilProps: {
+  //       headingTypographyProps: {
+  //         variant: 'subtitle1',
+  //         paragraph: false,
+  //         content: 'Candidate Information'
+  //       },
+  //       searchFieldProps: {
+  //         autoFocus: false,
+  //         placeholder: ' Search any candidate',
+  //         variant: 'outlined'
+  //       },
+  //       filterButtonProps: {
+  //         variant: 'outlined',
 
-        imageProps: {
-          src: FilterSVG,
-          alt: 'Filter SVG'
-        }
-      },
-      moreButtonProps: {
-        variant: 'outlined',
+  //         imageProps: {
+  //           src: FilterSVG,
+  //           alt: 'Filter SVG'
+  //         }
+  //       },
+  //       moreButtonProps: {
+  //         variant: 'outlined',
 
-        imageProps: {
-          src: MoreSVG,
-          alt: 'More SVG'
-        }
-      }
-    }
-  };
+  //         imageProps: {
+  //           src: MoreSVG,
+  //           alt: 'More SVG'
+  //         }
+  //       }
+  //     }
+  //   };
 
   test('renders Candidates component with the required molecules and atoms', async () => {
-    const { container } = render(<Candidates {...defaultProps} />);
+    const { container } = render(<CandidatesPage />);
 
     expect(screen.queryByRole('heading', { level: 1 })).toBeInTheDocument();
     expect(screen.queryByRole('img', { name: 'Export Icon' })).toBeInTheDocument();
@@ -129,7 +130,7 @@ describe('Candidates component', () => {
   });
 
   test('renders the Candidate list', async () => {
-    render(<Candidates {...defaultProps} />);
+    render(<CandidatesPage />);
     const items = await screen.findAllByTestId('candidate-item');
 
     expect(items).toHaveLength(2);

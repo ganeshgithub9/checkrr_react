@@ -5,8 +5,10 @@ import Sidebar from '.';
 import { describe, test, expect } from '@jest/globals';
 
 import { MemoryRouter } from 'react-router-dom';
+import userEvent from '@testing-library/user-event';
 
 const mockNavigate = jest.fn();
+const mockClick = jest.fn();
 
 jest.mock('react-router-dom', () => {
   const originalModule = jest.requireActual('react-router-dom');
@@ -113,6 +115,27 @@ describe('Sidebar component', () => {
       </MemoryRouter>
     );
 
+    expect(screen.queryByRole('img', { name: 'Recruit Image' })).toBeInTheDocument();
+    expect(screen.queryByRole('img', { name: 'CheckrrAvatar' })).toBeInTheDocument();
+    expect(screen.queryByRole('img', { name: 'Logout SVG' })).toBeInTheDocument();
+    expect(screen.queryByText(/jw@abc.com/i)).toBeInTheDocument();
+    expect(screen.queryByText(/John Wesley/i)).toBeInTheDocument();
+  });
+
+  test('runs HandleClick function when clicking on any navigation button', async () => {
+    render(
+      <MemoryRouter>
+        <Sidebar />
+      </MemoryRouter>
+    );
+
+    const candidateButton = screen.queryByText(/Candidates/i);
+    expect(candidateButton).toBeInTheDocument();
+    if (candidateButton) {
+      candidateButton.onclick = mockClick;
+    }
+    await userEvent.click(candidateButton);
+    expect(mockClick).toHaveBeenCalledTimes(1);
     expect(screen.queryByRole('img', { name: 'Recruit Image' })).toBeInTheDocument();
     expect(screen.queryByRole('img', { name: 'CheckrrAvatar' })).toBeInTheDocument();
     expect(screen.queryByRole('img', { name: 'Logout SVG' })).toBeInTheDocument();

@@ -53,7 +53,7 @@ const profileItemProps: ProfileItemProps = {
 };
 
 const SidebarComponent = () => {
-  const [selectedNav, setNav] = useState('/');
+  const [selectedNav, setSelectedNav] = useState('/');
 
   return (
     <Box sx={stylingObjects.outerBoxStyling}>
@@ -68,7 +68,7 @@ const SidebarComponent = () => {
             <ListItem
               component={Link}
               to={navBarItemProps.to}
-              onClick={() => setNav(navBarItemProps.to)}
+              onClick={() => setSelectedNav(navBarItemProps.to)}
               key={navBarItemProps.to}
               sx={{
                 height: '44px',

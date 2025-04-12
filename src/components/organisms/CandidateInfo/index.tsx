@@ -21,18 +21,6 @@ import {
 } from '../../constants/objects';
 
 import CandidateOrReportInfo from '../../molecules/CandidateOrReportInfo';
-// import UserSVG from '../../../assets/svgs/user.svg';
-// import EmailSVG from '../../../assets/svgs/Email.svg';
-// import NameSVG from '../../../assets/svgs/Name.svg';
-// import PhoneSVG from '../../../assets/svgs/Phone.svg';
-// import LocationSVG from '../../../assets/svgs/Location.svg';
-// import SecuritySVG from '../../../assets/svgs/Security.svg';
-// import CalendarSVG from '../../../assets/svgs/Calendar.svg';
-// import ClearSVG from '../../../assets/svgs/Clear.svg';
-// import AdverseActionSVG from '../../../assets/svgs/adverse_actions.svg';
-// import PackageSVG from '../../../assets/svgs/Package.svg';
-// import Calendar1SVG from '../../../assets/svgs/Calendar-1.svg';
-// import ClockSVG from '../../../assets/svgs/Clock.svg';
 import Chip from '../../atoms/Chip';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -143,8 +131,8 @@ const conditionalComponents = [
 ];
 
 const CandidateInfoComponent = (props: CandidateInfoProps) => {
-  const [isButtonOpen, openButton] = useState<boolean[]>([false, false, false]);
-  const [currentIcons, toggleIcon] = useState<number[]>([0, 0, 0]);
+  const [isButtonOpen, setIsButtonOpen] = useState<boolean[]>([false, false, false]);
+  const [currentIcons, setCurrentIcons] = useState<number[]>([0, 0, 0]);
   const [candidateInfo, setCandidateInfo] = useState<CandidateGenearalInfoProps>({});
   const [reportInfo, setReportInfo] = useState<CandidateReportInfoProps>({});
   const [courtSearchInfo, setCourtSearchInfo] = useState<CourtSearchDBProps>(
@@ -157,11 +145,11 @@ const CandidateInfoComponent = (props: CandidateInfoProps) => {
   const handleClick = (index: number) => {
     const updatedButtonOpen = [...isButtonOpen];
     updatedButtonOpen[index] = !updatedButtonOpen[index];
-    openButton(updatedButtonOpen);
+    setIsButtonOpen(updatedButtonOpen);
 
     const updatedIcons = [...currentIcons];
     updatedIcons[index] = currentIcons[index] ^ 1;
-    toggleIcon(updatedIcons);
+    setCurrentIcons(updatedIcons);
   };
 
   if (props.headerProps.outlinedButtonProps) {

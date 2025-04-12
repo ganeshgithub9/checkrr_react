@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import axios from 'axios';
@@ -8,6 +8,7 @@ import FilterSVG from '../../../assets/svgs/filter.svg';
 import MoreSVG from '../../../assets/svgs/More.svg';
 import ExportIcon from '../../../assets/svgs/export.svg';
 import ManualOrderIcon from '../../../assets/svgs/manual_order.svg';
+import { EmojiPeople } from '@mui/icons-material';
 
 //import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -26,6 +27,7 @@ jest.mock('react-router-dom', () => {
 
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
+
 mockedAxios.get.mockResolvedValue({
   data: {
     pageSize: 10,
@@ -133,5 +135,37 @@ describe('Candidates component', () => {
     const items = await screen.findAllByTestId('candidate-item');
 
     expect(items).toHaveLength(2);
+  });
+
+  test('shows alert popup message when the API call fails', async () => {
+    mockedAxios.get.mockRejectedValueOnce(new Error('Network Error'));
+    const mockAlert = jest.fn();
+    window.alert = mockAlert;
+    render(<Candidates {...defaultProps} />);
+    await waitFor(() => {
+      expect(mockAlert).toHaveBeenCalledTimes(1);
+    });
+    //const items = await screen.findAllByTestId('candidate-item');
+
+    expect(mockAlert).toHaveBeenCalledTimes(1);
+  });
+
+  test('displays candidate full details when the user click on a candidate record', async () => {
+    render(<Candidates {...defaultProps} />);
+    await waitFor(() => {
+      expect(axios.get).toHaveBeenCalled();
+    });
+
+    const items = await screen.findAllByTestId('candidate-item');
+
+    expect(items).toHaveLength(2);
+    const johnRecord = screen.getByText('John');
+    await userEvent.click(johnRecord);
+    expect(mockNavigate).toHaveBeenCalledTimes(1);
+    // const johnRecord = await screen.queryByText(/John/i);
+    // expect(johnRecord).toBeInTheDocument();
+    //const items = await screen.findAllByTestId('candidate-item');
+
+    //expect(mockAlert).toHaveBeenCalledTimes(1);
   });
 });
