@@ -25,7 +25,7 @@ const MailComponent = (props: CandidateInfoProps) => {
     {} as CandidateGenearalInfoProps
   );
   const [checks, setChecks] = useState([false, false, false]);
-  const [days, setDays] = useState<string>('5');
+  const [days, setDays] = useState<string>('');
   const [isNoticeClicked, setIsNoticeClicked] = useState(false);
   const [isNoticeSubmitted, setIsNoticeSubmitted] = useState(false);
 

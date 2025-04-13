@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import axios from 'axios';
@@ -129,5 +129,45 @@ describe('Mail component', () => {
     expect(screen.queryAllByText(/Assault Domestic Violence/i)).toHaveLength(2);
     expect(screen.queryAllByText(/Driving while license suspended/i)).toHaveLength(1);
     expect(screen.queryAllByText(/Unable to verify employment history/i)).toHaveLength(1);
+  });
+
+  test('shows alert popup message when the API call fails to fetch the information of a particular candidate', async () => {
+    mockedAxios.get.mockRejectedValueOnce(new Error('Network Error'));
+    const mockAlert = jest.fn();
+    window.alert = mockAlert;
+    render(<Mail {...defaultProps} />);
+    await waitFor(() => {
+      expect(mockAlert).toHaveBeenCalledTimes(1);
+    });
+    //const items = await screen.findAllByTestId('candidate-item');
+
+    expect(mockAlert).toHaveBeenCalledTimes(1);
+  });
+
+  test('updates the value inside the textfield when user changes it', async () => {
+    render(<Mail {...defaultProps} />);
+    const daysTextField = screen.getByRole('textbox');
+    await userEvent.type(daysTextField, '15');
+    expect(daysTextField).toHaveValue('15');
+  });
+
+  test('closes the mail review popup when user clicks on cancel button', async () => {
+    render(<Mail {...defaultProps} />);
+    const noticeButton = screen.getByRole('button', { name: 'Notice' });
+    await userEvent.click(noticeButton);
+    expect(screen.queryAllByText(/CheckrBpo/i)).toHaveLength(2);
+    const cancelButton = screen.getByRole('button', { name: 'Cancel' });
+    await userEvent.click(cancelButton);
+    expect(screen.queryAllByText(/CheckrBpo/i)).toHaveLength(1);
+  });
+
+  test('shows the success message popup when user clicks on submit notice button', async () => {
+    render(<Mail {...defaultProps} />);
+    const noticeButton = screen.getByRole('button', { name: 'Notice' });
+    await userEvent.click(noticeButton);
+    expect(screen.queryAllByText(/CheckrBpo/i)).toHaveLength(2);
+    const submitNoticeButton = screen.getByRole('button', { name: 'Submit Notice' });
+    await userEvent.click(submitNoticeButton);
+    expect(screen.queryByText(/Pre-Adverse Action notice successfully sent/i)).toBeInTheDocument();
   });
 });

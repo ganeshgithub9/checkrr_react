@@ -8,7 +8,6 @@ import FilterSVG from '../../../assets/svgs/filter.svg';
 import MoreSVG from '../../../assets/svgs/More.svg';
 import ExportIcon from '../../../assets/svgs/export.svg';
 import ManualOrderIcon from '../../../assets/svgs/manual_order.svg';
-import { EmojiPeople } from '@mui/icons-material';
 
 //import { BrowserRouter as Router } from 'react-router-dom';
 
