@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { describe, test, expect } from '@jest/globals';
-import Modal, { ModalProps } from '.';
+import Modal from '.';
+import { ModalProps } from '@mui/material';
 import MailSuccessItem from '../MailSuccessItem';
 import SuccessGIF from '../../../assets/gifs/Success.gif';
 
@@ -11,7 +12,6 @@ describe('Modal component', () => {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    //width: 400,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,

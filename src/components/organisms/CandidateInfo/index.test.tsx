@@ -6,8 +6,6 @@ import CandidateInfo, { CandidateInfoProps } from '.';
 import { describe, test, expect } from '@jest/globals';
 import BackIcon from '../../../assets/svgs/Back.svg';
 
-//import { BrowserRouter as Router } from 'react-router-dom';
-
 const mockNavigate = jest.fn();
 
 jest.mock('react-router-dom', () => {
@@ -130,7 +128,6 @@ describe('CandidateInfo component', () => {
     await waitFor(() => {
       expect(axios.get).toHaveBeenCalledTimes(9); // 9 represents the axios.get calls from above tests as well since we mocked it globally
       expect(axios.get).toHaveBeenCalledWith('http://localhost:3000/report-info/1');
-      //   expect(screen.queryByText(/engage/i)).toBeInTheDocument();
     });
     const reportInfoButton = screen.getByRole('button', { name: 'Report Information' });
     await userEvent.click(reportInfoButton);
@@ -143,11 +140,29 @@ describe('CandidateInfo component', () => {
     await waitFor(() => {
       expect(axios.get).toHaveBeenCalledTimes(12); // 9 represents the axios.get calls from above tests as well since we mocked it globally
       expect(axios.get).toHaveBeenCalledWith('http://localhost:3000/candidate-courtsearches/1');
-      //   expect(screen.queryByText(/engage/i)).toBeInTheDocument();
     });
     const courtSearchInfoButton = screen.getByRole('button', { name: 'Court Searches' });
     await userEvent.click(courtSearchInfoButton);
     expect(screen.queryByText(/World Criminal/i)).toBeInTheDocument();
     expect(screen.queryByText(/Global Watchlist/i)).toBeInTheDocument();
+  });
+
+  test('displays alert message when fetch API call fails', async () => {
+    jest.mock('axios');
+    const mockedAxios = axios as jest.Mocked<typeof axios>;
+    mockedAxios.get.mockRejectedValue(new Error('Network error'));
+    const mockAlert = jest.fn();
+    window.alert = mockAlert;
+
+    render(<CandidateInfo {...defaultProps} />);
+
+    await waitFor(() => {
+      expect(axios.get).toHaveBeenCalledTimes(15); // 9 represents the axios.get calls from above tests as well since we mocked it globally
+      expect(axios.get).toHaveBeenCalledWith('http://localhost:3000/candidate-courtsearches/1');
+      expect(axios.get).toHaveBeenCalledWith('http://localhost:3000/report-info/1');
+      expect(axios.get).toHaveBeenCalledWith('http://localhost:3000/candidate-info/1');
+    });
+
+    expect(mockAlert).toHaveBeenCalledTimes(3);
   });
 });

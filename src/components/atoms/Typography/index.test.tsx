@@ -1,11 +1,9 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Typography, { CustomTypographyProps } from '.';
 import { describe, test, expect } from '@jest/globals';
 
 describe('Typography component', () => {
-  const mockChangeHandler = jest.fn();
-
   const defaultProps: CustomTypographyProps = {
     content: 'Hello',
     variant: 'h1',
@@ -15,8 +13,6 @@ describe('Typography component', () => {
   test('renders the given text on the screen', () => {
     render(<Typography {...defaultProps} />);
     expect(screen.queryByText('Hello')).toBeInTheDocument();
-    //expect(buttonElements).toHaveLength(5);
-    //expect(textElement).toHaveTextContent('10 per page');
   });
 
   test('renders the text with given variant and alignment', () => {

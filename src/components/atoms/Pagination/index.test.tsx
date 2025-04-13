@@ -13,7 +13,6 @@ describe('Pagination component', () => {
     render(<Pagination {...defaultProps} />);
     const buttonElements: HTMLElement[] = screen.getAllByRole('button');
     expect(buttonElements).toHaveLength(5);
-    //expect(textElement).toHaveTextContent('10 per page');
   });
 
   test('renders the pagination item which has page 2 button present', () => {

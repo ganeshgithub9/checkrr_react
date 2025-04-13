@@ -4,7 +4,7 @@ export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 }
 
 const ImageComponent = (props: ImageProps) => {
-  return <img {...props} />;
+  return <img {...props} alt={props.alt} />;
 };
 
 export default ImageComponent;

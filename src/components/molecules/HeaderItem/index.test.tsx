@@ -34,9 +34,7 @@ describe('HeaderItem component', () => {
 
   test('renders the given content of HeaderItem', () => {
     render(<HeaderItem {...defaultProps} />);
-    // expect(screen.getByText(defaultProps.headingProps?.content || '')).toBeInTheDocument();
-    // expect(screen.getByText(defaultProps.outlinedButtonProps?.content || '')).toBeInTheDocument();
-    // expect(screen.getByText(defaultProps.containedButtonProps?.content || '')).toBeInTheDocument();
+
     expect(screen.queryAllByRole('img', { name: 'Back Icon' })[0]).toHaveAttribute('src');
     expect(screen.getByRole('heading')).toHaveTextContent(defaultProps.headingProps?.content || '');
     expect(screen.queryByRole('button', { name: 'Pre-Adverse Action' })).toBeInTheDocument();

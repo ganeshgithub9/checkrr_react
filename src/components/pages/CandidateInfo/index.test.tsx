@@ -1,12 +1,9 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
 
-//import CandidateInfo, { CandidateInfoProps } from '../../organisms/CandidateInfo';
 import CandidateInfoPage from '.';
 import { describe, test, expect } from '@jest/globals';
-import BackIcon from '../../../assets/svgs/Back.svg';
-
-//import { BrowserRouter as Router } from 'react-router-dom';
 
 const mockNavigate = jest.fn();
 
@@ -22,32 +19,6 @@ jest.mock('react-router-dom', () => {
 });
 
 describe('CandidateInfo component', () => {
-  const mockBackClick = jest.fn(),
-    mockEngageClick = jest.fn();
-  //   const defaultProps: CandidateInfoProps = {
-  //     headerProps: {
-  //       imageProps: {
-  //         src: BackIcon,
-  //         alt: 'Back Icon',
-  //         onClick: mockBackClick
-  //       },
-  //       headingProps: {
-  //         variant: 'h1',
-  //         paragraph: false,
-  //         content: 'John Smith'
-  //       },
-  //       outlinedButtonProps: {
-  //         variant: 'outlined',
-  //         label: 'Pre-Adverse Action'
-  //       },
-  //       containedButtonProps: {
-  //         variant: 'contained',
-  //         label: 'Engage',
-  //         onClick: mockEngageClick
-  //       }
-  //     }
-  //   };
-
   test('renders CandidateInfo component having a header component and 3 data containers', () => {
     render(<CandidateInfoPage />);
 
@@ -63,18 +34,33 @@ describe('CandidateInfo component', () => {
   test('renders the given content of CandidateInfo', () => {
     render(<CandidateInfoPage />);
 
-    // const backIcon = screen.getByRole('img', { name: 'Back Icon' });
-    // fireEvent.click(backIcon);
-    // expect(mockBackClick).toHaveBeenCalledTimes(1);
     const adverseActionButton = screen.getByRole('button', { name: 'Pre-Adverse Action' });
     fireEvent.click(adverseActionButton);
     expect(mockNavigate).toHaveBeenCalledWith('/candidates/1/pre-adverse-action');
     expect(mockNavigate).toHaveBeenCalledTimes(1);
-    // const engageButton = screen.getByRole('button', { name: 'Engage' });
-    // fireEvent.click(engageButton);
-    // expect(mockEngageClick).toHaveBeenCalledTimes(1);
+
     const candidateInfoButton = screen.getByRole('button', { name: 'Candidate Information' });
     fireEvent.click(candidateInfoButton);
     expect(screen.queryByText(/name/i)).toBeInTheDocument();
+  });
+
+  test('renders th', () => {
+    render(<CandidateInfoPage />);
+
+    const adverseActionButton = screen.getByRole('button', { name: 'Pre-Adverse Action' });
+    fireEvent.click(adverseActionButton);
+    expect(mockNavigate).toHaveBeenCalledWith('/candidates/1/pre-adverse-action');
+    expect(mockNavigate).toHaveBeenCalledTimes(2);
+
+    const candidateInfoButton = screen.getByRole('button', { name: 'Candidate Information' });
+    fireEvent.click(candidateInfoButton);
+    expect(screen.queryByText(/name/i)).toBeInTheDocument();
+  });
+
+  test('Navigates to the previous screen when user clicked on back icon', async () => {
+    render(<CandidateInfoPage />);
+    const backIcon = screen.getByRole('img', { name: 'Back Icon' });
+    await userEvent.click(backIcon);
+    expect(mockNavigate).toHaveBeenCalledTimes(3);
   });
 });

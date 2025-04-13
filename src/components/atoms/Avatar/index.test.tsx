@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Avatar, { CustomAvatarProps } from '.';
 import { describe, test, expect } from '@jest/globals';
@@ -18,15 +18,12 @@ describe('Avatar component', () => {
 
   test('renders children text as fallback if src is not given', () => {
     render(<Avatar>Hello</Avatar>);
-    //const imgElement = screen.getByRole('img');
     const textElement = screen.getByText('Hello');
-    //expect(imgElement).toBeInTheDocument();
     expect(textElement).toBeInTheDocument();
   });
 
   test('renders generic person icon as fallback is src and children are absent', () => {
     render(<Avatar alt="No image" />);
-    //const textElement = screen.getByText('N');
     expect(screen.queryByText('No image')).not.toBeInTheDocument();
   });
 });

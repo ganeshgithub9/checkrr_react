@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import axios from 'axios';
@@ -6,8 +6,6 @@ import Mail, { CandidateInfoProps } from '.';
 import { describe, test, expect } from '@jest/globals';
 
 import BackIcon from '../../../assets/svgs/Back.svg';
-
-//import { BrowserRouter as Router } from 'react-router-dom';
 
 const mockNavigate = jest.fn();
 
@@ -50,9 +48,6 @@ mockedAxios.get.mockResolvedValue({
 });
 
 describe('Mail component', () => {
-  //   const mockBackClick = jest.fn(),
-  //     mockEngageClick = jest.fn();
-
   const defaultProps: CandidateInfoProps = {
     headerProps: {
       imageProps: {
@@ -86,7 +81,6 @@ describe('Mail component', () => {
   };
 
   test('renders Mail content on the web page', async () => {
-    // const { container } = render(<Mail {...defaultProps} />);
     render(<Mail {...defaultProps} />);
 
     expect(screen.getByText(/Subject: Pre-Adverse action notice-Checkr-Bpo/i)).toBeInTheDocument();
@@ -139,7 +133,6 @@ describe('Mail component', () => {
     await waitFor(() => {
       expect(mockAlert).toHaveBeenCalledTimes(1);
     });
-    //const items = await screen.findAllByTestId('candidate-item');
 
     expect(mockAlert).toHaveBeenCalledTimes(1);
   });

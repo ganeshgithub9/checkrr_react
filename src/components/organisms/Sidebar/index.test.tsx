@@ -49,43 +49,7 @@ mockedAxios.get.mockResolvedValue({
 });
 
 describe('Sidebar component', () => {
-  //   const mockBackClick = jest.fn(),
-  //     mockEngageClick = jest.fn();
-
-  //   const defaultProps: CandidateInfoProps = {
-  //     headerProps: {
-  //       imageProps: {
-  //         src: BackIcon,
-  //         alt: 'Back Icon'
-  //       },
-  //       headingProps: {
-  //         variant: 'h1',
-  //         paragraph: false,
-  //         content: 'Pre-Adverse action notice'
-  //       }
-  //     },
-  //     autoSendNoticeItemProps: {
-  //       noticeButtonProps: {
-  //         variant: 'contained',
-  //         label: 'Notice'
-  //       },
-  //       autoSend1TypographyProps: {
-  //         variant: 'body1',
-  //         paragraph: false,
-  //         content: 'Auto send post adverse action'
-  //       },
-  //       autoSend2TypographyProps: {
-  //         variant: 'body1',
-  //         content: 'Days'
-  //       },
-  //       daysTextFieldProps: {
-  //         variant: 'outlined'
-  //       }
-  //     }
-  //   };
-
   test('renders Sidebar component with all the navigation buttons along with icons', async () => {
-    // const { container } = render(<Sidebar {...defaultProps} />);
     render(
       <MemoryRouter>
         <Sidebar />

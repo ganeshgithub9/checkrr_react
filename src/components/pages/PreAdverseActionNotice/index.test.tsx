@@ -1,13 +1,11 @@
-import { render, screen, act } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import axios from 'axios';
-import Mail, { CandidateInfoProps } from '../../organisms/Mail';
+import PreAdverseActionNoticePage from '.';
 import { describe, test, expect } from '@jest/globals';
 
 import BackIcon from '../../../assets/svgs/Back.svg';
-
-//import { BrowserRouter as Router } from 'react-router-dom';
 
 const mockNavigate = jest.fn();
 
@@ -50,9 +48,6 @@ mockedAxios.get.mockResolvedValue({
 });
 
 describe('Mail component', () => {
-  //   const mockBackClick = jest.fn(),
-  //     mockEngageClick = jest.fn();
-
   const defaultProps: CandidateInfoProps = {
     headerProps: {
       imageProps: {
@@ -86,8 +81,7 @@ describe('Mail component', () => {
   };
 
   test('renders Mail content on the web page', async () => {
-    // const { container } = render(<Mail {...defaultProps} />);
-    render(<Mail {...defaultProps} />);
+    render(<PreAdverseActionNoticePage />);
 
     expect(screen.getByText(/Subject: Pre-Adverse action notice-Checkr-Bpo/i)).toBeInTheDocument();
     expect(
@@ -106,7 +100,7 @@ describe('Mail component', () => {
   });
 
   test('renders the Mail review content on Modal after clicking on preview', async () => {
-    render(<Mail {...defaultProps} />);
+    render(<PreAdverseActionNoticePage />);
     const assaultCheckbox = screen.getByRole('checkbox', { name: 'Assault Domestic Violence' });
 
     await userEvent.click(assaultCheckbox);
@@ -131,5 +125,13 @@ describe('Mail component', () => {
     expect(screen.queryAllByText(/Assault Domestic Violence/i)).toHaveLength(2);
     expect(screen.queryAllByText(/Driving while license suspended/i)).toHaveLength(1);
     expect(screen.queryAllByText(/Unable to verify employment history/i)).toHaveLength(1);
+  });
+
+  test('Navigates to the previous screen when user clicked on back icon', async () => {
+    render(<PreAdverseActionNoticePage />);
+    const backIcon = screen.getByRole('img', { name: 'Back Icon' });
+
+    await userEvent.click(backIcon);
+    expect(mockNavigate).toHaveBeenCalledTimes(1);
   });
 });

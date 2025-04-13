@@ -15,8 +15,6 @@ describe('TextField component', () => {
     render(<TextField {...defaultProps} />);
     const inputElement = screen.getByPlaceholderText('Search');
     expect(inputElement).toBeInTheDocument();
-    //expect(buttonElements).toHaveLength(5);
-    //expect(textElement).toHaveTextContent('10 per page');
   });
 
   test('calls the OnChange callback while user types', () => {

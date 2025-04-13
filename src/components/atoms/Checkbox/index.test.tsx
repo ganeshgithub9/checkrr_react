@@ -20,8 +20,6 @@ describe('Checkbox component', () => {
   test('calls onChange handler when clicked', () => {
     render(<Checkbox {...defaultProps} />);
     const CheckboxElement = screen.getByRole('checkbox');
-    //fireEvent.change(CheckboxElement);
-    //expect(CheckboxElement).toBeInTheDocument();
     fireEvent.click(CheckboxElement);
     expect(mockClickHandler).toHaveBeenCalledTimes(1);
   });

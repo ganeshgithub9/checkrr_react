@@ -53,63 +53,6 @@ mockedAxios.get.mockResolvedValue({
 });
 
 describe('Candidates component', () => {
-  //   const mockBackClick = jest.fn(),
-  //     mockEngageClick = jest.fn();
-
-  //   const defaultProps: CandidatesProps = {
-  //     headerProps: {
-  //       headingProps: {
-  //         variant: 'h1',
-  //         paragraph: false,
-  //         content: 'Candidates'
-  //       },
-  //       outlinedButtonProps: {
-  //         variant: 'outlined',
-  //         label: 'Export',
-  //         imageProps: {
-  //           src: ExportIcon,
-  //           alt: 'Export Icon'
-  //         }
-  //       },
-  //       containedButtonProps: {
-  //         variant: 'contained',
-  //         label: 'Manual Order',
-  //         imageProps: {
-  //           src: ManualOrderIcon,
-  //           alt: 'Manual Order Icon'
-  //         }
-  //       }
-  //     },
-  //     listUtilProps: {
-  //       headingTypographyProps: {
-  //         variant: 'subtitle1',
-  //         paragraph: false,
-  //         content: 'Candidate Information'
-  //       },
-  //       searchFieldProps: {
-  //         autoFocus: false,
-  //         placeholder: ' Search any candidate',
-  //         variant: 'outlined'
-  //       },
-  //       filterButtonProps: {
-  //         variant: 'outlined',
-
-  //         imageProps: {
-  //           src: FilterSVG,
-  //           alt: 'Filter SVG'
-  //         }
-  //       },
-  //       moreButtonProps: {
-  //         variant: 'outlined',
-
-  //         imageProps: {
-  //           src: MoreSVG,
-  //           alt: 'More SVG'
-  //         }
-  //       }
-  //     }
-  //   };
-
   test('renders Candidates component with the required molecules and atoms', async () => {
     const { container } = render(<CandidatesPage />);
 
@@ -120,7 +63,6 @@ describe('Candidates component', () => {
     expect(screen.queryByRole('img', { name: 'Filter SVG' })).toBeInTheDocument();
     expect(screen.queryByRole('img', { name: 'More SVG' })).toBeInTheDocument();
     expect(screen.queryByRole('textbox')).toBeInTheDocument();
-    //expect(screen.queryByRole('paragraph', { name: '10 out of 15 results' })).toBeInTheDocument();
     expect(screen.getByRole('combobox')).toBeInTheDocument();
     const buttonElements = container.querySelectorAll('.MuiPaginationItem-root');
     expect(buttonElements).toHaveLength(5);

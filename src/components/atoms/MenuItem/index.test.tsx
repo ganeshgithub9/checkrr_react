@@ -20,7 +20,6 @@ describe('MenuItem component', () => {
     render(<MenuItem {...defaultProps} />);
     const textElement = screen.getByText('10 per page');
     expect(textElement).toBeInTheDocument();
-    //expect(imgElement).not.toHaveAttribute('src');
     expect(textElement).toHaveAttribute('value', '10');
   });
 });

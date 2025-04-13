@@ -9,8 +9,6 @@ import MoreSVG from '../../../assets/svgs/More.svg';
 import ExportIcon from '../../../assets/svgs/export.svg';
 import ManualOrderIcon from '../../../assets/svgs/manual_order.svg';
 
-//import { BrowserRouter as Router } from 'react-router-dom';
-
 const mockNavigate = jest.fn();
 
 jest.mock('react-router-dom', () => {
@@ -53,9 +51,6 @@ mockedAxios.get.mockResolvedValue({
 });
 
 describe('Candidates component', () => {
-  //   const mockBackClick = jest.fn(),
-  //     mockEngageClick = jest.fn();
-
   const defaultProps: CandidatesProps = {
     headerProps: {
       headingProps: {
@@ -120,7 +115,6 @@ describe('Candidates component', () => {
     expect(screen.queryByRole('img', { name: 'Filter SVG' })).toBeInTheDocument();
     expect(screen.queryByRole('img', { name: 'More SVG' })).toBeInTheDocument();
     expect(screen.queryByRole('textbox')).toBeInTheDocument();
-    //expect(screen.queryByRole('paragraph', { name: '10 out of 15 results' })).toBeInTheDocument();
     expect(screen.getByRole('combobox')).toBeInTheDocument();
     const buttonElements = container.querySelectorAll('.MuiPaginationItem-root');
     expect(buttonElements).toHaveLength(5);
@@ -144,7 +138,6 @@ describe('Candidates component', () => {
     await waitFor(() => {
       expect(mockAlert).toHaveBeenCalledTimes(1);
     });
-    //const items = await screen.findAllByTestId('candidate-item');
 
     expect(mockAlert).toHaveBeenCalledTimes(1);
   });
@@ -161,10 +154,5 @@ describe('Candidates component', () => {
     const johnRecord = screen.getByText('John');
     await userEvent.click(johnRecord);
     expect(mockNavigate).toHaveBeenCalledTimes(1);
-    // const johnRecord = await screen.queryByText(/John/i);
-    // expect(johnRecord).toBeInTheDocument();
-    //const items = await screen.findAllByTestId('candidate-item');
-
-    //expect(mockAlert).toHaveBeenCalledTimes(1);
   });
 });
