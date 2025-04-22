@@ -6,13 +6,15 @@ import { theme } from '../../../themes';
 const StyledDiv = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'left',
-  width: '330px',
+  width: '300px',
   height: '68 px',
   gap: '10px',
   borderWidth: '1px',
   borderRadius: '12px',
   borderStyle: 'solid',
-  borderColor: theme.palette.structuralColor.stroke
+  borderColor: theme.palette.structuralColor.stroke,
+  padding: '10px',
+  backgroundColor: theme.palette.accent.lightBlue
   //width: '238px',
   //width: '100%',
   //backgroundColor: 'blue',

@@ -65,11 +65,16 @@ const MailComponent = (props: CandidateInfoProps) => {
     boxShadow: 24,
     pt: 2,
     px: 4,
-    pb: 3
+    pb: 3,
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    fontSize: '14px',
+    lineHeight: '18px'
   };
 
   const mailReviewNode = (
-    <Stack spacing={5} sx={{ ...style }}>
+    <Stack spacing={3} sx={{ ...style }}>
       <p>From: Kyle@checkr.com</p>
       <p>To: {candidateInfo.email}</p>
       <p>Subject: Pre-Adverse action notice-Checkr-Bpo</p>
@@ -133,17 +138,39 @@ const MailComponent = (props: CandidateInfoProps) => {
         alt: 'Success GIF'
       }}
       messageProps={{
-        content: 'Pre-Adverse Action notice successfully sent'
+        content: 'Pre-Adverse Action notice successfully sent',
+        sx: {
+          fontFamily: 'Inter',
+          fontStyle: 'normal',
+          fontWeight: 500,
+          fontSize: '18px',
+          lineHeight: '28px'
+        }
       }}
     />
   );
   return (
     <Stack spacing={5}>
       <HeaderItem {...props.headerProps} />
-      <Stack spacing={5}>
-        <p>From: Kyle@checkr.com</p>
-        <p>To: {candidateInfo.email}</p>
-        <p>Subject: Pre-Adverse action notice-Checkr-Bpo</p>
+      <Stack
+        spacing={3}
+        sx={{
+          fontFamily: 'Inter',
+          fontStyle: 'normal',
+          fontWeight: 400,
+          fontSize: '14px',
+          lineHeight: '18px'
+        }}>
+        <p>
+          <strong>From:</strong> Kyle@checkr.com
+        </p>
+        <p>
+          <strong>To:</strong>
+          {candidateInfo.email}
+        </p>
+        <p>
+          <strong>Subject:</strong> Pre-Adverse action notice-Checkr-Bpo
+        </p>
         <div>
           <p>Dear {candidateInfo.name}</p>
           <p>
@@ -159,7 +186,7 @@ const MailComponent = (props: CandidateInfoProps) => {
                 key={labelObj.id}
                 control={<CheckBox />}
                 label={labelObj.label}
-                onChange={() => handleChecks(index)}
+                onStateChange={() => handleChecks(index)}
                 checked={checks[index]}
               />
             ))}

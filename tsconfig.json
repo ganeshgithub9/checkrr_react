@@ -42,6 +42,6 @@
     "isolatedModules": true,
     "skipLibCheck": true
   },
-  "include": ["src/**/**/*", ".storybook/", "src/custom.d.ts", "**/*.test.tsx","**/*.ts","src/setupTests.ts","src/setupTests.d.ts"],
+  "include": ["src/**/**/*", ".storybook/", "src/custom.d.ts", "**/*.test.tsx","**/*.ts","src/setupTests.ts","src/setupTests.d.ts", "jest.config.js"],
   "exclude": ["node_modules", "dist", "build"]
 }

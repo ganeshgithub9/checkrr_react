@@ -6,7 +6,7 @@ export interface CustomChipProps extends ChipProps {
 }
 
 const ChipComponent = (props: CustomChipProps) => {
-  return <Chip label={props.label} variant={props.variant} />;
+  return <Chip {...props} />;
 };
 
 export default ChipComponent;

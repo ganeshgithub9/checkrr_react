@@ -10,18 +10,23 @@ const StyledImage = styled(Image)(() => ({
 }));
 
 const StyledMailTypography = styled(Typography)(() => ({
-  ...theme.typography.caption2,
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: 400,
+  fontSize: '12px',
+  lineHeight: '18px',
   color: theme.palette.textColor.lowEmphasis
 }));
 
 const StyledDiv = styled('div')(() => ({
   display: 'flex',
-  justifyContent: 'flex-start',
+  justifyContent: 'space-evenly',
   height: '38px',
   //width: '238px',
   width: '100%',
   //backgroundColor: 'blue',
-  gap: '20px'
+  gap: '20px',
+  padding: '10px'
 }));
 
 const StyledNameMailDiv = styled('div')(() => ({

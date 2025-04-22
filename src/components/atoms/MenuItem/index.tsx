@@ -2,7 +2,7 @@ import MenuItem, { MenuItemProps } from '@mui/material/MenuItem';
 
 export interface CustomMenuItemProps extends MenuItemProps {
   label: string;
-  value: number;
+  //value: number;
 }
 
 const MenuItemComponent = (props: CustomMenuItemProps) => {

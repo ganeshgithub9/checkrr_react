@@ -4,12 +4,12 @@ import Checkbox, { CustomCheckBoxProps } from '.';
 import { describe, test, expect } from '@jest/globals';
 
 describe('Checkbox component', () => {
-  const mockClickHandler = jest.fn();
+  const mockStateChange = jest.fn();
 
   const defaultProps: CustomCheckBoxProps = {
     control: <input type="checkbox" />,
     label: 'Check Me',
-    onChange: mockClickHandler
+    onStateChange: mockStateChange
   };
 
   test('renders the Checkbox with correct label', () => {
@@ -21,7 +21,7 @@ describe('Checkbox component', () => {
     render(<Checkbox {...defaultProps} />);
     const CheckboxElement = screen.getByRole('checkbox');
     fireEvent.click(CheckboxElement);
-    expect(mockClickHandler).toHaveBeenCalledTimes(1);
+    expect(mockStateChange).toHaveBeenCalledTimes(1);
   });
 
   test('checked when the checked attribute is set', () => {

@@ -34,7 +34,18 @@ const HeaderItemComponent = (props: HeaderItemProps) => {
         <StyledHeadingTypography {...props.headingProps} />
       </StyledDiv>
       <StyledDiv>
-        {props.outlinedButtonProps ? <Button {...props.outlinedButtonProps} /> : null}
+        {props.outlinedButtonProps ? (
+          <Button
+            {...props.outlinedButtonProps}
+            sx={{
+              color: theme.palette.textColor.mediumEmphasis,
+              borderWidth: '1px',
+              borderColor: theme.palette.structuralColor.stroke,
+              borderRadius: '6px',
+              backgroundColor: theme.palette.structuralColor.white
+            }}
+          />
+        ) : null}
         {props.containedButtonProps ? <Button {...props.containedButtonProps} /> : null}
       </StyledDiv>
     </StyledDiv>

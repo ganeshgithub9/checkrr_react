@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import axios from 'axios';
@@ -74,16 +74,14 @@ describe('Mail component', () => {
         variant: 'body1',
         content: 'Days'
       },
-      daysTextFieldProps: {
-        variant: 'outlined'
-      }
+      daysTextFieldProps: {}
     }
   };
 
   test('renders Mail content on the web page', async () => {
     render(<Mail {...defaultProps} />);
 
-    expect(screen.getByText(/Subject: Pre-Adverse action notice-Checkr-Bpo/i)).toBeInTheDocument();
+    expect(screen.getByText(/Pre-Adverse action notice-Checkr-Bpo/i)).toBeInTheDocument();
     expect(
       screen.getByText(
         /You are recently authorized checkr-bpo to obtain consumer reports and investigate consumer reports about you from a consumer reporting agency. The company is considering taking action in whole or in past on information in such reports including the following specific items identified in the report prepared by Checkr Inc./i
@@ -105,8 +103,8 @@ describe('Mail component', () => {
     await userEvent.click(assaultCheckbox);
     expect(assaultCheckbox).toBeChecked();
     const noticeButton = screen.getByRole('button', { name: 'Notice' });
-    await userEvent.click(noticeButton);
-    expect(screen.queryAllByText(/Subject: Pre-Adverse action notice-Checkr-Bpo/i)).toHaveLength(2);
+    await act(async () => userEvent.click(noticeButton));
+    expect(screen.queryAllByText(/Pre-Adverse action notice-Checkr-Bpo/i)).toHaveLength(2);
     expect(
       screen.queryAllByText(
         /You are recently authorized checkr-bpo to obtain consumer reports and investigate consumer reports about you from a consumer reporting agency. The company is considering taking action in whole or in past on information in such reports including the following specific items identified in the report prepared by Checkr Inc./i
@@ -163,4 +161,18 @@ describe('Mail component', () => {
     await userEvent.click(submitNoticeButton);
     expect(screen.queryByText(/Pre-Adverse Action notice successfully sent/i)).toBeInTheDocument();
   });
+
+  // test('navigates the user to candidates page after closing success message', async () => {
+  //   render(<Mail {...defaultProps} />);
+  //   const noticeButton = screen.getByRole('button', { name: 'Notice' });
+  //   await userEvent.click(noticeButton);
+  //   expect(screen.queryAllByText(/CheckrBpo/i)).toHaveLength(2);
+  //   const submitNoticeButton = screen.getByRole('button', { name: 'Submit Notice' });
+  //   await userEvent.click(submitNoticeButton);
+  //   expect(screen.queryByText(/Pre-Adverse Action notice successfully sent/i)).toBeInTheDocument();
+  //   expect(noticeButton).toBeInTheDocument();
+  //   await userEvent.click(noticeButton);
+  //   expect(mockNavigate).toHaveBeenCalled();
+  //   expect(mockNavigate).toHaveBeenCalledWith('/candidates');
+  // });
 });

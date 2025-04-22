@@ -71,7 +71,13 @@ const stylingObjects = {
     display: 'flex',
     justifyContent: 'space-between',
     ...theme.typography.subtitle1,
-    color: theme.palette.textColor.highEmphasis
+    color: theme.palette.textColor.highEmphasis,
+    borderRadius: '8px',
+    backgroundColor: theme.palette.structuralColor.white,
+    borderWidth: '1px',
+    borderColor: theme.palette.structuralColor.stroke,
+    boxShadow: '0px 4px 28px 0px #2D2D2F19',
+    height: '56px'
   },
 
   boxStyling: {
@@ -115,10 +121,27 @@ const conditionalComponents = [
         {courtSearches?.list?.map((record: CourtSearchInfoProps) => (
           <TableRow key={record.id}>
             <TableCell>
-              <Typography sx={theme.typography.body2 || {}}>{record.search}</Typography>
+              <Typography
+                sx={{ ...theme.typography.body2, color: theme.palette.primaryColor.primary500 }}>
+                {record.search}
+              </Typography>
             </TableCell>
             <TableCell>
-              <Chip label={record.status} variant="filled" />
+              <Chip
+                label={record.status}
+                variant="outlined"
+                sx={{
+                  ...theme.typography.caption2,
+                  color:
+                    record.status === 'CLEAR'
+                      ? theme.palette.accent.green
+                      : theme.palette.accent.yellow,
+                  backgroundColor:
+                    record.status === 'CLEAR'
+                      ? theme.palette.accent.lightGreen
+                      : theme.palette.accent.lightYellow
+                }}
+              />
             </TableCell>
             <TableCell>
               <Typography sx={theme.typography.body2 || {}}>{record.date}</Typography>

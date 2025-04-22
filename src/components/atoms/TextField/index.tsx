@@ -1,27 +1,14 @@
-import { styled, TextField, TextFieldVariants, TextFieldProps } from '@mui/material';
-import { ChangeEventHandler } from 'react';
+import { styled, TextField, StandardTextFieldProps } from '@mui/material';
+import React from 'react';
 
 const StyledTextField = styled(TextField)(() => ({
-  // height: '10px',
-  // backgroundColor: 'red'
   boxSizing: 'border-box'
 }));
 
-export type CustomTextFieldProps =
-  | TextFieldProps<'filled'>
-  | (
-      | TextFieldProps<'outlined'>
-      | TextFieldProps<'standard'>
-      | {
-          autoFocus?: boolean;
-          id?: string;
-          onChange?: ChangeEventHandler;
-          placeholder?: string;
-          size?: 'small' | 'medium';
-          value?: string;
-          variant?: TextFieldVariants;
-        }
-    );
+export interface CustomTextFieldProps extends StandardTextFieldProps {
+  // inherits from InputBaseComponentProps
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+}
 
 const TextFieldComponent = (props: CustomTextFieldProps) => {
   return <StyledTextField {...props} />;

@@ -30,6 +30,11 @@ interface CandidateOrReportInfoIDProps extends CandidateOrReportInfoProps {
   [key: string]: any;
 }
 
+export interface CheckboxLabelsProps {
+  id: string;
+  label: string;
+}
+
 export const buttonObjects: CustomButtonProps[] = [
   {
     variant: 'outlined',
@@ -68,15 +73,15 @@ export const pagingItemPropsObject: PagingItemProps = {
   },
   dropdownProps: {
     inputLabelProps: {
-      label: 'page size'
+      //label: '10 per page'
     },
     selectProps: {
       sx: {
-        width: 120,
+        width: 150,
         height: 26
       },
-      value: 10,
-      label: '10 per page'
+      value: 10
+      //label: '10 per page'
     },
     menuItems: [
       { value: 10, label: '10 per page' },
@@ -90,10 +95,22 @@ export const pagingItemPropsObject: PagingItemProps = {
   }
 };
 
-export const checkboxLabels = [
+export const checkboxLabels: CheckboxLabelsProps[] = [
   { id: 'driving', label: 'Driving while license suspended' },
   { id: 'assault', label: 'Assault Domestic Violence' },
   { id: 'employment', label: 'Unable to verify employment history' }
+];
+
+export const statusFilterCheckboxLabels: CheckboxLabelsProps[] = [
+  { id: 'All Status', label: 'All Status' },
+  { id: 'Clear', label: 'Clear' },
+  { id: 'Consider', label: 'Consider' }
+];
+
+export const adjudicationFilterCheckboxLabels: CheckboxLabelsProps[] = [
+  { id: 'All Adjudication', label: 'All' },
+  { id: 'Engaged', label: 'Engaged' },
+  { id: 'Pre adverse action', label: 'Pre adverse action' }
 ];
 
 export const navigationObjects: (NavBarItemProps & { to: string })[] = [

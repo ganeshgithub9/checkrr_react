@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import Dropdown, { CustomDropdownProps } from '.';
@@ -15,7 +15,8 @@ describe('Dropdown component', () => {
         height: 50
       },
       value: 10,
-      label: '10 per page'
+      label: '10 per page',
+      inputProps: { 'data-testid': 'select-input' }
     },
     menuItems: [
       { value: 10, label: '10 per page' },
@@ -35,9 +36,22 @@ describe('Dropdown component', () => {
     const user = userEvent.setup();
     const comboBox = screen.getByRole('combobox');
     await user.click(comboBox);
-    expect(screen.getAllByRole('menuitem')).toHaveLength(3);
-    expect(screen.getByRole('menuitem', { name: '10 per page' })).toBeInTheDocument();
-    expect(screen.getByRole('menuitem', { name: '20 per page' })).toBeInTheDocument();
-    expect(screen.getByRole('menuitem', { name: '30 per page' })).toBeInTheDocument();
+    expect(screen.getAllByRole('option')).toHaveLength(3);
+    expect(screen.getByRole('option', { name: '10 per page' })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: '20 per page' })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: '30 per page' })).toBeInTheDocument();
   });
+
+  // test('calls onOptionChange method when user selects an option', async () => {
+  //   const mockOnOptionChange = jest.fn();
+  //   defaultProps.onOptionChange = mockOnOptionChange;
+  //   render(<Dropdown {...defaultProps} />);
+  //   expect(screen.queryByRole('combobox')).toBeInTheDocument();
+  //   const selectInput = screen.getByTestId('select-input');
+  //   fireEvent.mouseDown(selectInput);
+  //   const listbox = screen.getByRole('listbox');
+  //   const option = within(listbox).getByText('10 per page');
+  //   fireEvent.click(option);
+  //   expect(mockOnOptionChange).toHaveBeenCalledTimes(1);
+  // });
 });

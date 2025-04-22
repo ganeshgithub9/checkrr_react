@@ -4,10 +4,7 @@ import Typography, { CustomTypographyProps } from '../../atoms/Typography';
 import Dropdown, { CustomDropdownProps } from '../../molecules/Dropdown';
 import { theme } from '../../../themes';
 
-const StyledPagingTypography = styled(Typography)(() => ({
-  ...theme.typography.caption2,
-  color: theme.palette.textColor.mediumEmphasis
-}));
+const StyledPagingTypography = styled(Typography)(() => null);
 
 const stylingObjects = {
   outerBoxStyling: {
@@ -17,7 +14,8 @@ const stylingObjects = {
     gap: '10px',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    boxSizing: 'border-box'
+    boxSizing: 'border-box',
+    padding: '10px'
   },
   innerBoxStyling: {
     height: '56px',
@@ -32,7 +30,7 @@ const stylingObjects = {
 
 export interface PagingItemProps {
   pagingTypographyProps?: CustomTypographyProps;
-  dropdownProps?: CustomDropdownProps;
+  dropdownProps: CustomDropdownProps;
   paginationProps?: CustomPaginationProps;
 }
 
@@ -40,7 +38,13 @@ const PagingItemComponent = (props: PagingItemProps) => {
   return (
     <Box sx={stylingObjects.outerBoxStyling}>
       <Box sx={stylingObjects.innerBoxStyling}>
-        <StyledPagingTypography {...props.pagingTypographyProps} />
+        <StyledPagingTypography
+          {...props.pagingTypographyProps}
+          sx={{
+            ...theme.typography.caption2,
+            color: theme.palette.textColor.mediumEmphasis
+          }}
+        />
         <Dropdown {...props.dropdownProps} />
       </Box>
       <Pagination {...props.paginationProps} />

@@ -11,15 +11,15 @@ type Story = StoryObj<typeof Dropdown>;
 export const SimpleDropdown: Story = {
   args: {
     inputLabelProps: {
-      label: 'page size'
+      //label: 'page size'
     },
     selectProps: {
       sx: {
         width: 120,
         height: 50
       },
-      value: 10,
-      label: '10 per page'
+      value: 10
+      //label: '10 per page'
     },
     menuItems: [
       { value: 10, label: '10 per page', key: '10' },

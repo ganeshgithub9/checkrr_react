@@ -15,10 +15,13 @@ const stylingObjects = {
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignContent: 'space-between',
-    height: '720px',
-    width: '238px',
-    borderRadius: '6px',
-    borderColor: theme.palette.structuralColor.white
+    height: '720px'
+  },
+  innerBoxStyling: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignContent: 'space-between'
   },
   listStyling: {
     width: '100%',
@@ -57,34 +60,36 @@ const SidebarComponent = () => {
 
   return (
     <Box sx={stylingObjects.outerBoxStyling}>
-      <List sx={stylingObjects.listStyling}>
-        <ListItem sx={{ height: '44px' }}>
-          <Image {...imagePropsObject} width={'78px'} height={'20px'} />
-        </ListItem>
-      </List>
-      <nav>
+      <Box sx={stylingObjects.innerBoxStyling}>
         <List sx={stylingObjects.listStyling}>
-          {navigationObjects.map((navBarItemProps) => (
-            <ListItem
-              component={Link}
-              to={navBarItemProps.to}
-              onClick={() => setSelectedNav(navBarItemProps.to)}
-              key={navBarItemProps.to}
-              sx={{
-                height: '44px',
-                borderRadius: '8px',
-                borderColor: theme.palette.structuralColor.white,
-                borderStyle: 'solid',
-                backgroundColor:
-                  selectedNav === navBarItemProps.to
-                    ? theme.palette.primaryColor.primary300
-                    : 'transparent'
-              }}>
-              <NavBarItem {...navBarItemProps} />
-            </ListItem>
-          ))}
+          <ListItem sx={{ height: '44px' }}>
+            <Image {...imagePropsObject} width={'78px'} height={'20px'} />
+          </ListItem>
         </List>
-      </nav>
+        <nav>
+          <List sx={stylingObjects.listStyling}>
+            {navigationObjects.map((navBarItemProps) => (
+              <ListItem
+                component={Link}
+                to={navBarItemProps.to}
+                onClick={() => setSelectedNav(navBarItemProps.to)}
+                key={navBarItemProps.to}
+                sx={{
+                  height: '44px',
+                  borderRadius: '8px',
+                  borderColor: theme.palette.structuralColor.white,
+                  borderStyle: 'solid',
+                  backgroundColor:
+                    selectedNav === navBarItemProps.to
+                      ? theme.palette.primaryColor.primary300
+                      : 'transparent'
+                }}>
+                <NavBarItem {...navBarItemProps} />
+              </ListItem>
+            ))}
+          </List>
+        </nav>
+      </Box>
       <ProfileItem {...profileItemProps} />
     </Box>
   );

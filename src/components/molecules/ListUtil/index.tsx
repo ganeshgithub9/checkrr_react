@@ -41,7 +41,7 @@ const StyledTextField = styled(TextField)(() => ({
 export interface ListUtilProps {
   headingTypographyProps?: CustomTypographyProps;
   searchFieldProps?: CustomTextFieldProps;
-  filterButtonProps?: CustomButtonProps;
+  filterButtonProps: CustomButtonProps;
   moreButtonProps?: CustomButtonProps;
 }
 

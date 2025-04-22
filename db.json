@@ -1,12 +1,9 @@
 {
-  "candidates-adjudication": {
-    "pageSize": 10,
-    "totalRecords": 15,
-    "list":[
+  "candidates-adjudication": [
     {
       "id": "1",
       "name": "John",
-      "adjudicaion": "",
+      "adjudication": "ENGAGE",
       "status": "CLEAR",
       "location": "Japan",
       "date": ""
@@ -14,7 +11,7 @@
     {
       "id": "2",
       "name": "Rok",
-      "adjudicaion": "",
+      "adjudication": "",
       "status": "CONSIDER",
       "location": "Mexico",
       "date": ""
@@ -22,7 +19,7 @@
     {
       "id": "3",
       "name": "Sagar",
-      "adjudicaion": "",
+      "adjudication": "ENGAGE",
       "status": "CLEAR",
       "location": "Rome",
       "date": ""
@@ -30,7 +27,7 @@
     {
       "id": "4",
       "name": "Sim",
-      "adjudicaion": "",
+      "adjudication": "",
       "status": "CLEAR",
       "location": "Paris",
       "date": ""
@@ -39,7 +36,7 @@
     {
       "id": "5",
       "name": "John",
-      "adjudicaion": "",
+      "adjudication": "",
       "status": "CLEAR",
       "location": "Japan",
       "date": ""
@@ -47,7 +44,7 @@
     {
       "id": "6",
       "name": "Rok",
-      "adjudicaion": "",
+      "adjudication": "",
       "status": "CONSIDER",
       "location": "Mexico",
       "date": ""
@@ -55,7 +52,7 @@
     {
       "id": "7",
       "name": "Sagar",
-      "adjudicaion": "",
+      "adjudication": "ENGAGE",
       "status": "CLEAR",
       "location": "Rome",
       "date": ""
@@ -63,7 +60,7 @@
     {
       "id": "8",
       "name": "Sim",
-      "adjudicaion": "",
+      "adjudication": "",
       "status": "CLEAR",
       "location": "Paris",
       "date": ""
@@ -71,7 +68,7 @@
     {
       "id": "9",
       "name": "Sim",
-      "adjudicaion": "",
+      "adjudication": "ENGAGE",
       "status": "CLEAR",
       "location": "Paris",
       "date": ""
@@ -79,12 +76,174 @@
     {
       "id": "10",
       "name": "Ganesh",
-      "adjudicaion": "",
+      "adjudication": "",
+      "status": "CLEAR",
+      "location": "India",
+      "date": "30/3/2025"
+    },
+    {
+      "id": "11",
+      "name": "Johna",
+      "adjudication": "",
+      "status": "CLEAR",
+      "location": "Japan",
+      "date": ""
+    },
+    {
+      "id": "12",
+      "name": "Roka",
+      "adjudication": "",
+      "status": "CONSIDER",
+      "location": "Mexico",
+      "date": ""
+    },
+    {
+      "id": "13",
+      "name": "Sagara",
+      "adjudication": "ENGAGE",
+      "status": "CLEAR",
+      "location": "Rome",
+      "date": ""
+    },
+    {
+      "id": "14",
+      "name": "Sima",
+      "adjudication": "ENGAGE",
+      "status": "CLEAR",
+      "location": "Paris",
+      "date": ""
+    },
+
+    {
+      "id": "15",
+      "name": "Johna",
+      "adjudication": "",
+      "status": "CLEAR",
+      "location": "Japan",
+      "date": ""
+    },
+    {
+      "id": "16",
+      "name": "Roka",
+      "adjudication": "ENGAGE",
+      "status": "CONSIDER",
+      "location": "Mexico",
+      "date": ""
+    },
+    {
+      "id": "17",
+      "name": "Sagara",
+      "adjudication": "PRE ADVERSE ACTION",
+      "status": "CLEAR",
+      "location": "Rome",
+      "date": ""
+    },
+    {
+      "id": "18",
+      "name": "Sima",
+      "adjudication": "PRE ADVERSE ACTION",
+      "status": "CLEAR",
+      "location": "Paris",
+      "date": ""
+    },
+    {
+      "id": "19",
+      "name": "Sima",
+      "adjudication": "",
+      "status": "CLEAR",
+      "location": "Paris",
+      "date": ""
+    },
+    {
+      "id": "20",
+      "name": "Ganesha",
+      "adjudication": "ENGAGE",
+      "status": "CLEAR",
+      "location": "India",
+      "date": "30/3/2025"
+    },
+    {
+      "id": "21",
+      "name": "Johni",
+      "adjudication": "PRE ADVERSE ACTION",
+      "status": "CLEAR",
+      "location": "Japan",
+      "date": ""
+    },
+    {
+      "id": "22",
+      "name": "Roki",
+      "adjudication": "",
+      "status": "CONSIDER",
+      "location": "Mexico",
+      "date": ""
+    },
+    {
+      "id": "23",
+      "name": "Sagari",
+      "adjudication": "",
+      "status": "CLEAR",
+      "location": "Rome",
+      "date": ""
+    },
+    {
+      "id": "24",
+      "name": "Simi",
+      "adjudication": "PRE ADVERSE ACTION",
+      "status": "CLEAR",
+      "location": "Paris",
+      "date": ""
+    },
+
+    {
+      "id": "25",
+      "name": "Johni",
+      "adjudication": "",
+      "status": "CLEAR",
+      "location": "Japan",
+      "date": ""
+    },
+    {
+      "id": "26",
+      "name": "Roki",
+      "adjudication": "",
+      "status": "CONSIDER",
+      "location": "Mexico",
+      "date": ""
+    },
+    {
+      "id": "27",
+      "name": "Sagari",
+      "adjudication": "",
+      "status": "CLEAR",
+      "location": "Rome",
+      "date": ""
+    },
+    {
+      "id": "28",
+      "name": "Simi",
+      "adjudication": "",
+      "status": "CLEAR",
+      "location": "Paris",
+      "date": ""
+    },
+    {
+      "id": "29",
+      "name": "Simi",
+      "adjudication": "PRE ADVERSE ACTION",
+      "status": "CLEAR",
+      "location": "Paris",
+      "date": ""
+    },
+    {
+      "id": "30",
+      "name": "Ganeshi",
+      "adjudication": "ENGAGE",
       "status": "CLEAR",
       "location": "India",
       "date": "30/3/2025"
     }
-  ]},
+  ],
   "candidate-courtsearches": [
     {
       "id": "1",
@@ -135,7 +294,7 @@
     {
       "id": "1",
       "status": "Clear",
-      "adjudicaion": "Engage",
+      "adjudication": "Engage",
       "package": "Employee Pro",
       "createdAt": "Nov 28, 2016 11:05:57 AM",
       "completedDate": "Dec 4, 2016 12:00:00 PM",
@@ -144,7 +303,7 @@
     {
       "id": "2",
       "status": "Consider",
-      "adjudicaion": "Engage",
+      "adjudication": "Engage",
       "package": "Employee Pro",
       "createdAt": "Jan 28, 2016 11:05:57 AM",
       "completedDate": "Dec 4, 2016 12:00:00 PM",

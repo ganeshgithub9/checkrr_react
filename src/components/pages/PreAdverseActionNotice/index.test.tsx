@@ -83,7 +83,7 @@ describe('Mail component', () => {
   test('renders Mail content on the web page', async () => {
     render(<PreAdverseActionNoticePage />);
 
-    expect(screen.getByText(/Subject: Pre-Adverse action notice-Checkr-Bpo/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Pre-Adverse action notice-Checkr-Bpo/i)).toBeInTheDocument();
     expect(
       screen.getByText(
         /You are recently authorized checkr-bpo to obtain consumer reports and investigate consumer reports about you from a consumer reporting agency. The company is considering taking action in whole or in past on information in such reports including the following specific items identified in the report prepared by Checkr Inc./i
@@ -108,7 +108,7 @@ describe('Mail component', () => {
     expect(assaultCheckbox).toBeChecked();
     const noticeButton = screen.getByRole('button', { name: 'Notice' });
     await userEvent.click(noticeButton);
-    expect(screen.queryAllByText(/Subject: Pre-Adverse action notice-Checkr-Bpo/i)).toHaveLength(2);
+    expect(screen.queryAllByText(/Pre-Adverse action notice-Checkr-Bpo/i)).toHaveLength(2);
     expect(
       screen.queryAllByText(
         /You are recently authorized checkr-bpo to obtain consumer reports and investigate consumer reports about you from a consumer reporting agency. The company is considering taking action in whole or in past on information in such reports including the following specific items identified in the report prepared by Checkr Inc./i

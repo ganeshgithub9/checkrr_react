@@ -43,7 +43,7 @@ describe('PagingItem component', () => {
     expect(buttonElements).toHaveLength(5);
     const comboBox = screen.getByRole('combobox');
     await user.click(comboBox);
-    expect(screen.queryAllByRole('menuitem')).toHaveLength(3);
+    expect(screen.queryAllByRole('option')).toHaveLength(3);
   });
 
   test('renders the given content of PagingItem', async () => {
@@ -58,9 +58,9 @@ describe('PagingItem component', () => {
     expect(screen.getByText('3')).toBeInTheDocument();
     const comboBox = screen.getByRole('combobox');
     await user.click(comboBox);
-    expect(screen.getAllByRole('menuitem')).toHaveLength(3);
-    expect(screen.getByRole('menuitem', { name: '10 per page' })).toBeInTheDocument();
-    expect(screen.getByRole('menuitem', { name: '20 per page' })).toBeInTheDocument();
-    expect(screen.getByRole('menuitem', { name: '30 per page' })).toBeInTheDocument();
+    expect(screen.getAllByRole('option')).toHaveLength(3);
+    expect(screen.getByRole('option', { name: '10 per page' })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: '20 per page' })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: '30 per page' })).toBeInTheDocument();
   });
 });

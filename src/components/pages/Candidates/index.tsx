@@ -3,6 +3,7 @@ import FilterSVG from '../../../assets/svgs/filter.svg';
 import MoreSVG from '../../../assets/svgs/More.svg';
 import ExportIcon from '../../../assets/svgs/export.svg';
 import ManualOrderIcon from '../../../assets/svgs/manual_order.svg';
+import { theme } from '../../../themes';
 
 const CandidatesPage = () => {
   return (
@@ -44,11 +45,12 @@ const CandidatesPage = () => {
           },
           filterButtonProps: {
             variant: 'outlined',
-
+            label: 'Filter',
             imageProps: {
               src: FilterSVG,
               alt: 'Filter SVG'
-            }
+            },
+            sx: { height: '36px', color: theme.palette.textColor.mediumEmphasis }
           },
           moreButtonProps: {
             variant: 'outlined',

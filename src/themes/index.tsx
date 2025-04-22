@@ -10,7 +10,7 @@ declare module '@mui/material/styles' {
     body1?: SxProps<Theme>;
     body2: SxProps<Theme>;
     caption1?: SxProps<Theme>;
-    caption2?: React.CSSProperties;
+    caption2?: SxProps<Theme>;
   }
 
   interface TypographyVariantsOptions {
@@ -20,7 +20,7 @@ declare module '@mui/material/styles' {
     body1?: SxProps<Theme>;
     body2: SxProps<Theme>;
     caption1?: SxProps<Theme>;
-    caption2?: React.CSSProperties;
+    caption2?: SxProps<Theme>;
   }
 
   interface Palette {
